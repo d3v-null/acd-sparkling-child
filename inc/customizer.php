@@ -5,24 +5,14 @@
  */
 function acd_customizer( $wp_customize ) {
 
+    /* modifications to sparkling typography options */
+
     $typography_defaults = array(
             'face'  => 'Open Sans',
             'style' => 'normal',
     );
     global $typography_options;
 
-    // $wp_customize->add_setting('sparkling[heading_typography][size]', array(
-    //     'default' => $typography_defaults['size'],
-    //     'type' => 'option',
-    //     'sanitize_callback' => 'sparkling_sanitize_typo_size'
-    // ));
-    // $wp_customize->add_control('sparkling[heading_typography][size]', array(
-    //     'label' => __('Heading Typography', 'sparkling'),
-    //     'description' => __('Used in h tags', 'sparkling'),
-    //     'section' => 'sparkling_typography_options',
-    //     'type'    => 'select',
-    //     'choices'    => $typography_options['sizes']
-    // ));
     $wp_customize->add_setting('sparkling[heading_typography][face]', array(
         'default' => $typography_defaults['face'],
         'type' => 'option',
@@ -43,7 +33,41 @@ function acd_customizer( $wp_customize ) {
         'type'    => 'select',
         'choices'    => $typography_options['styles']
     ));
+
+    /* modifications to sparkling layout options */
+
+    $wp_customize->add_setting('sparkling[page_width]', array(
+        'default' => 960,
+        'type'    => 'option',
+        'sanitize_callback' => 'acd_sanitize_pagewidth'
+    ));
+    $wp_customize->add_control('sparkling[page_width]', array(
+        'section'   => 'sparkling_layout_options',
+        'type'      => 'text',
+        'label'     => __('Page Width'),
+        'description'  => __('The width of the page')
+    ));
+
+    /* modifications to sparkling header options */
+
+    // $wp_customize->add_setting('sparkling[header_background_url]', array(
+    //     'default' => '',
+    //     'type'      => 'option',
+    // ));
+
 }
 add_action( 'customize_register', 'acd_customizer' );
 
+
+/**
+ * Sanitzie checkbox for WordPress customizer
+ */
+function acd_sanitize_pagewidth( $input ) {
+    $number = (int)$input;
+    if ( $number >= 240 && $number < 5120 ) {
+        return $number;
+    } else {
+        return '';
+    }
+}
  ?>

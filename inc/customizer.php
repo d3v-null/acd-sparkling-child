@@ -20,6 +20,8 @@ function acd_customizer( $wp_customize ) {
     ));
     $wp_customize->add_control('sparkling[heading_typography][face]', array(
         'section' => 'sparkling_typography_options',
+        'label' => __('Headings'),
+        'description' => __('Heading typography'),
         'type'    => 'select',
         'choices'    => $typography_options['faces']
     ));
@@ -30,6 +32,7 @@ function acd_customizer( $wp_customize ) {
     ));
     $wp_customize->add_control('sparkling[heading_typography][style]', array(
         'section' => 'sparkling_typography_options',
+        // 'description' => __('Heading typography style'),
         'type'    => 'select',
         'choices'    => $typography_options['styles']
     ));
@@ -72,6 +75,22 @@ function acd_customizer( $wp_customize ) {
         )
     );
 
+    $wp_customize->add_setting(
+        'sparkling[header_nav_position]',
+        array(
+            'default' => 'center',
+            'type'      => 'option',
+            'sanitize_callback' => ''
+        )
+    );
+
+    $wp_customize->add_control('sparkling[header_nav_position]', array(
+        'section' => 'sparkling_header_options',
+        'description' => __('Header nav menu position'),
+        'type'    => 'select',
+        'choices'    => $typography_options['horizontal-positions']
+    ));
+
 }
 add_action( 'customize_register', 'acd_customizer' );
 
@@ -83,6 +102,16 @@ function acd_sanitize_pagewidth( $input ) {
     $number = (int)$input;
     if ( $number >= 240 && $number < 5120 ) {
         return $number;
+    } else {
+        return '';
+    }
+}
+
+function acd_sanitize_horizontal_position( $input ) {
+    global $typography_options;
+    $options = $typography_options['horizontal-positions'];
+    if(in_array($input, $options)){
+        return $input;
     } else {
         return '';
     }

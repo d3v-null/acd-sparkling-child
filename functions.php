@@ -22,24 +22,40 @@ function acd_scripts() {
 add_action( 'wp_enqueue_scripts', 'acd_scripts' );
 
 
-function add_extra_typography_faces(){
+function add_extra_typography_options(){
     global $typography_options;
+    $extra_typography_options = array(
+        // 'positions' => array(
+        //     'top left', 'top', 'top right',
+        //     'left', 'center', 'right',
+        //     'bottom left', 'bottom', 'bottom right'
+        // ),
+        'horizontal-positions' => array(
+            'left', 'center', 'right'
+        )
+    );
+    if(isset($typography_options) and is_array($typography_options)){
+        $typography_options = array_merge($typography_options, $extra_typography_options);
+    } else {
+        $typography_options = $extra_typography_options;
+    }
+
     $extra_typography_faces = array(
         'yanone-kaffeesatz'    => 'Yanone Kaffeesatz',
         'im-fell-dw-pica-sc'   => 'IM Fell DW Pica SC',
         'im-fell-dw-pica'      => 'IM Fell DW Pica',
     );
-    if(!isset($typography_options) or !is_array($typography_options)){
-        $typography_options = array('faces' => $extra_typography_faces);
-    } else {
+    if(isset($typography_options) and is_array($typography_options)){
         $typography_options['faces'] = array_merge(
             $typography_options['faces'],
             $extra_typography_faces
         );
+    } else {
+        $typography_options = array('faces' => $extra_typography_faces);
     }
     error_log("typography options:".serialize($typography_options));
 }
-add_action('init', 'add_extra_typography_faces', 99);
+add_action('init', 'add_extra_typography_options', 99);
 
 /**
  * Customizer additions.

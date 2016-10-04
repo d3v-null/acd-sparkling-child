@@ -31,9 +31,9 @@ if ( ! function_exists( 'get_acd_theme_options' ) ) {
             $header_nav_css .= "max-width:{$page_width}px; margin: 0 auto;";
         }
 
-        $header_url = of_get_option('header_background_url');
-        if( !empty($header_url) ) {
-            $header_nav_css .= "background-image: url( \"$header_url\"); ";
+        $header_nav_bg_url = of_get_option('header_background_url');
+        if( !empty($header_nav_bg_url) ) {
+            $header_nav_css .= "background-image: url( \"$header_nav_bg_url\"); ";
             $header_nav_css .= "background-position: bottom; ";
             $header_nav_css .= "background-size: cover; ";
         }
@@ -42,8 +42,32 @@ if ( ! function_exists( 'get_acd_theme_options' ) ) {
             echo " header#masthead nav { $header_nav_css ;} ";
         }
 
-        echo '</style>';
+        $header_nav_menu_css = '';
+        $header_nav_position = of_get_option('header_nav_position');
+        $header_nav_position_str = $typography_options['horizontal-positions'][$header_nav_position];
+        if( !empty($header_nav_position_str)){
+            $header_nav_menu_css .= " /* position: $header_nav_position_str */ ";
+            switch ($header_nav_position_str) {
+                case 'left':
+                case 'right':
+                    $header_nav_menu_css .= "float: $header_nav_position_str; ";
+                    break;
+                case 'center':
+                default:
+                    $header_nav_menu_css .=
+                        "float: left; position: relative; left:50%; transform: translate(-50%, 0);";
+                        // TODO FIX this for better browser compat, something like;
+                        // "float: none; display: block; margin: auto;";
+                    break;
+            }
+        }
 
+        if(!empty($header_nav_menu_css)){
+            echo " header#masthead nav ul.nav { $header_nav_menu_css ;} ";
+        }
+
+
+        echo '</style>';
     }
 
 }

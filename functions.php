@@ -4,6 +4,15 @@
  * Enqueue scripts and styles.
  */
 function acd_scripts() {
+    $parent_style = 'sparkling';
+
+    wp_enqueue_style( $parent_style, get_template_directory_uri() . '/style.css' );
+    wp_enqueue_style( 'acd-sparkling-child',
+        get_stylesheet_directory_uri() . '/style.css',
+        array( $parent_style ),
+        wp_get_theme()->get('Version')
+    );
+
     $google_font_query_args = array(
         'family' => 'Yanone+Kaffeesatz:400,700:latin|IM+Fell+DW+Pica:400|IM+Fell+DW+Pica+SC:400',
     );

@@ -49,11 +49,28 @@ function acd_customizer( $wp_customize ) {
     ));
 
     /* modifications to sparkling header options */
+    //
+    $wp_customize->add_setting(
+        'sparkling[header_background_url]',
+        array(
+            'default' => '',
+            'type'      => 'option',
+            'sanitize_callback' => ''
+            // 'transport' => 'postMessage'
+        )
+    );
 
-    // $wp_customize->add_setting('sparkling[header_background_url]', array(
-    //     'default' => '',
-    //     'type'      => 'option',
-    // ));
+    $wp_customize->add_control(
+        new WP_Customize_Image_Control(
+            $wp_customize,
+            'sparkling[header_background_url]',
+            array(
+                'label' => __( 'Upload a background for the header', 'sparkling' ),
+                'settings' => 'sparkling[header_background_url]',
+                'section' => 'sparkling_header_options'
+            )
+        )
+    );
 
 }
 add_action( 'customize_register', 'acd_customizer' );

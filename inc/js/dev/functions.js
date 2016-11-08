@@ -1,5 +1,5 @@
 // Enable tooltips
 
-$(function () {
-  $('[data-toggle="tooltip"]').tooltip()
-})
+jQuery(document).ready(function($){
+    $('[data-toggle="tooltip"]').tooltip();
+});

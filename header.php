@@ -37,20 +37,46 @@ if (isset($_SERVER['HTTP_USER_AGENT']) && (strpos($_SERVER['HTTP_USER_AGENT'], '
 	<header id="masthead" class="site-header" role="banner">
 		<?php
 		 	$nav_classes = array('navbar', 'navbar-default');
-			if( of_get_option('sticky_header') ) $nav_classes[] = 'navbar-fixed-top';
-			if( of_get_option('constrain_header') ) $nav_classes[] = 'container';
+			$sub_nav_classes = array('container');
+			if( of_get_option('sticky_header') ) {
+				$nav_classes[] = 'navbar-fixed-top';
+			}
+			if( of_get_option('constrain_header') ) {
+				$nav_classes[] = 'container';
+				$sub_nav_classes = array_diff($sub_nav_classes, array('container'));
+			}
 		?>
 		<nav class="<?php echo implode(' ', $nav_classes); ?>" role="navigation">
-			<div class="container">
+			<div class="<?php echo implode(' ', $sub_nav_classes); ?>">
 				<div class="row">
 					<?php
 						$header_icons = array();
-						$header_icons[] = array(
-							'icon'=>'user',
-							''
-						);
+						if ( is_user_logged_in() ){
+							$header_icons[] = array(
+								'icon'=>'user',
+								'link'=>site_url( "/my-account"),
+								'title'=>'My Account'
+							);
+							$header_icons[] = array(
+								'icon'=>'sign-out',
+								'link'=>wp_logout_url( ),
+								'title'=>'Sign out'
+							);
+						} else {
+							$header_icons[] = array(
+								'icon'=>'sign-in',
+								'link'=>wp_login_url( ),
+								'title'=>'Sign in'
+							);
+							$header_icons[] = array(
+								'icon'=>'user-plus',
+								'link'=>site_url( "/wholesale-access" ),
+								'title'=>'Create Account'
+							);
+						}
+
 					?>
-					<div class="site-navigation-inner col-sm-12 col-xs-10">
+					<div class="site-navigation-inner col-sm-12 col-xs-6">
 						<div class="navbar-header">
 							<?php if( get_header_image() != '' ) : ?>
 
@@ -72,19 +98,28 @@ if (isset($_SERVER['HTTP_USER_AGENT']) && (strpos($_SERVER['HTTP_USER_AGENT'], '
 
 						</div>
 					</div>
-					<div class="site-navigation-innter-navbar-toggle col-xs-1">
+					<div class="site-navigation-innter-bottom col-xs-12 col-sm-9">
 						<button type="button" class="btn navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
 							<span class="sr-only">Toggle navigation</span>
 							<i class="fa fa-bars fa-lg" aria-hidden="true"></i>
 						</button>
-					</div>
-					<div class="site-navigation-innter-bottom col-sm-10">
 						<?php sparkling_header_menu(); // main navigation ?>
 					</div>
-					<div class="col-xs-1">
-						<button type="button" class="btn navbar-toggle navbar-toggle-show" data-toggle="tooltip" data-placement="bottom" title="log in">
-							<i class="fa fa-user fa-lg" aria-hidden="true"></i>
-						</button>
+					<div class="site-navigation-innter-icons hide-xs col-sm-3">
+						<?php
+							foreach($header_icons as $header_icon){
+								$defaults = array(
+									'icon'=>'question',
+									'link'=>'#',
+									'title'=>'title'
+								);
+								$header_icon = array_merge($defaults, $header_icon);
+								?>
+								<a href="<?php echo $header_icon['link']; ?>" type="button" class="btn navbar-toggle navbar-toggle-show" data-toggle="tooltip" data-placement="bottom" title="<?php echo $header_icon['title']; ?>">
+								<i class="fa fa-<?php echo $header_icon['icon']; ?> fa-lg" aria-hidden="true"></i>
+								</a>
+							<?php }
+						?>
 					</div>
 				</div>
 			</div>

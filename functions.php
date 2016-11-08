@@ -24,7 +24,7 @@ function acd_scripts() {
     wp_enqueue_script( 'acd-sparkling-child-tether', get_stylesheet_directory_uri(). '/inc/js/tether.min.js', array('jquery') );
     wp_enqueue_script( 'acd-sparkling-child-functions', get_stylesheet_directory_uri(). '/inc/js/functions.min.js', array('jquery', 'sparkling-bootstrapjs') );
 }
-add_action( 'wp_enqueue_scripts', 'acd_scripts', 9 );
+add_action( 'wp_enqueue_scripts', 'acd_scripts' );
 
 
 function add_extra_typography_options(){

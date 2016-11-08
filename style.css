@@ -37,11 +37,11 @@ div#logo {
     }
 }
 
-@media (max-width: 767px) {
+/*@media (max-width: 767px) {
     .site-navigation-innter-bottom{
         display: none;
     }
-}
+}*/
 
 .navbar-toggle.navbar-toggle-show {
     display:inherit;

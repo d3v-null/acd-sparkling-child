@@ -9,6 +9,8 @@ A child of the Sparkling theme for the ACD website
   - [ ] Nav menu font
   - [ ] My Account / logout buttons
   - [ ] Visibility in reactive view
+  - [ ] Grey bar at top in reactive view
+  - [ ] Submenu font
 - Home
   - [ ] template remove title
   - [ ] template remove page border
@@ -19,9 +21,9 @@ A child of the Sparkling theme for the ACD website
   - [ ] Fix breadcrumbs font
 - Sidebars
   - [ ] Fix search widget icon
-  - [ ] Fix <li> font
+  - [ ] Fix &lt;li&gt; font
 - WooCommerce
   - [ ] Remove mark.count
   - [ ] Custom button colour
 - Typography
-  - [ ] <a> underlined
+  - [ ] &lt;a&gt; underlined

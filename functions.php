@@ -3,11 +3,13 @@
 /**
  * Enqueue scripts and styles.
  */
+
+
 function acd_scripts() {
     $parent_style = 'sparkling';
 
     wp_enqueue_style( $parent_style, get_template_directory_uri() . '/style.css' );
-    wp_enqueue_style( 'acd-sparkling-child',
+    wp_enqueue_style( 'acd-sparkling-child-style',
         get_stylesheet_directory_uri() . '/style.css',
         array( $parent_style ),
         wp_get_theme()->get('Version')
@@ -18,8 +20,11 @@ function acd_scripts() {
     );
     wp_register_style( 'acd-google-fonts', add_query_arg( $google_font_query_args, "//fonts.googleapis.com/css" ), array(), null );
     wp_enqueue_style('acd-google-fonts');
+
+    wp_enqueue_script( 'acd-sparkling-child-tether', get_stylesheet_directory_uri(). '/inc/js/tether.min.js', array('jquery') );
+    wp_enqueue_script( 'acd-sparkling-child-functions', get_stylesheet_directory_uri(). '/inc/js/functions.min.js', array('jquery', 'sparkling-bootstrapjs') );
 }
-add_action( 'wp_enqueue_scripts', 'acd_scripts' );
+add_action( 'wp_enqueue_scripts', 'acd_scripts', 9 );
 
 
 function add_extra_typography_options(){

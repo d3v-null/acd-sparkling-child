@@ -4,13 +4,14 @@ A child of the Sparkling theme for the ACD website
 ## Roadmap
 
 - Header
-  - [ ] Remove border
-  - [ ] Nav menu z-height
-  - [ ] Nav menu font
+  - [x] Nav menu z-height
   - [ ] My Account / logout buttons
+  - [ ] Header icons have tooltips
+  - [ ] Nav menu font
   - [ ] Visibility in reactive view
   - [ ] Grey bar at top in reactive view
   - [ ] Submenu font
+  - [ ] Remove border?
 - Home
   - [ ] template remove title
   - [ ] template remove page border

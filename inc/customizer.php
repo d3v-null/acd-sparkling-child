@@ -39,16 +39,28 @@ function acd_customizer( $wp_customize ) {
 
     /* modifications to sparkling layout options */
 
-    $wp_customize->add_setting('sparkling[page_width]', array(
-        'default' => 960,
-        'type'    => 'option',
-        'sanitize_callback' => 'acd_sanitize_pagewidth'
+    // $wp_customize->add_setting('sparkling[page_width]', array(
+    //     'default' => 960,
+    //     'type'    => 'option',
+    //     'sanitize_callback' => 'acd_sanitize_pagewidth'
+    // ));
+    // $wp_customize->add_control('sparkling[page_width]', array(
+    //     'section'   => 'sparkling_layout_options',
+    //     'type'      => 'text',
+    //     'label'     => __('Page Width'),
+    //     'description'  => __('The width of the page')
+    // ));
+
+    $wp_customize->add_setting('sparkling[constrain_header]', array(
+        'default' => 0,
+        'type' => 'option',
+        'sanitize_callback' => 'sparkling_sanitize_checkbox',
     ));
-    $wp_customize->add_control('sparkling[page_width]', array(
-        'section'   => 'sparkling_layout_options',
-        'type'      => 'text',
-        'label'     => __('Page Width'),
-        'description'  => __('The width of the page')
+    $wp_customize->add_control('sparkling[constrain_header]', array(
+        'section'   => 'sparkling_header_options',
+        'type'      => 'checkbox',
+        'label'     => __('Constrain Header'),
+        'description'  => __('Tick to constrain header, if off header is fullscreen')
     ));
 
     /* modifications to sparkling header options */
@@ -98,14 +110,14 @@ add_action( 'customize_register', 'acd_customizer' );
 /**
  * Sanitzie checkbox for WordPress customizer
  */
-function acd_sanitize_pagewidth( $input ) {
-    $number = (int)$input;
-    if ( $number >= 240 && $number < 5120 ) {
-        return $number;
-    } else {
-        return '';
-    }
-}
+// function acd_sanitize_pagewidth( $input ) {
+//     $number = (int)$input;
+//     if ( $number >= 240 && $number < 5120 ) {
+//         return $number;
+//     } else {
+//         return '';
+//     }
+// }
 
 function acd_sanitize_horizontal_position( $input ) {
     global $typography_options;

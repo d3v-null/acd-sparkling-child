@@ -48,55 +48,91 @@ if (isset($_SERVER['HTTP_USER_AGENT']) && (strpos($_SERVER['HTTP_USER_AGENT'], '
 		?>
 		<nav class="<?php echo implode(' ', $nav_classes); ?>" role="navigation">
 			<div class="<?php echo implode(' ', $sub_nav_classes); ?>">
-				<div class="row">
-					<?php
-						$header_icons = array();
-						if ( is_user_logged_in() ){
-							$header_icons[] = array(
-								'icon'=>'user',
-								'link'=>site_url( "/my-account"),
-								'title'=>'My Account'
+				<?php
+					$header_icons = array();
+					if ( is_user_logged_in() ){
+						$header_icons[] = array(
+							'icon'=>'user',
+							'link'=>site_url( "/my-account"),
+							'title'=>'My Account'
+						);
+						$header_icons[] = array(
+							'icon'=>'sign-out',
+							'link'=>wp_logout_url( ),
+							'title'=>'Sign out'
+						);
+					} else {
+						$header_icons[] = array(
+							'icon'=>'sign-in',
+							'link'=>wp_login_url( ),
+							'title'=>'Sign in'
+						);
+						$header_icons[] = array(
+							'icon'=>'user-plus',
+							'link'=>site_url( "/wholesale-access" ),
+							'title'=>'Create Account'
+						);
+					}
+
+					function get_icons($header_icons)
+					{
+						$out = '';
+						foreach($header_icons as $header_icon){
+							$defaults = array(
+								'icon'=>'question',
+								'link'=>'#',
+								'title'=>'title'
 							);
-							$header_icons[] = array(
-								'icon'=>'sign-out',
-								'link'=>wp_logout_url( ),
-								'title'=>'Sign out'
-							);
-						} else {
-							$header_icons[] = array(
-								'icon'=>'sign-in',
-								'link'=>wp_login_url( ),
-								'title'=>'Sign in'
-							);
-							$header_icons[] = array(
-								'icon'=>'user-plus',
-								'link'=>site_url( "/wholesale-access" ),
-								'title'=>'Create Account'
-							);
+							$header_icon = array_merge($defaults, $header_icon);
+							$out .= "<a type=\"button\"";
+							$out .= "   href=\"{$header_icon['link']}\"";
+							$out .= "   title=\"{$header_icon['title']}\"";
+							$out .= "   class=\"btn navbar-toggle navbar-toggle-show\"";
+							$out .= "   data-toggle=\"tooltip\" data-placement=\"bottom\">";
+							$out .= "<i class=\"fa fa-{$header_icon['icon']} fa-lg\"";
+							$out .= "   aria-hidden=\"true\"></i>";
+							$out .= "</a>";
 						}
+						return $out;
+					}
 
-					?>
-					<div class="site-navigation-inner col-sm-12 col-xs-6">
+					function get_logo(){
+						$out = "<div id=\"logo\">";
+						if( get_header_image() != '' ) {
+							$out .= "<a href=\"" . esc_url( home_url( '/' ) ). "\">";
+							$out .= "<img ";
+							$out .= "     class=\"img-responseive\"";
+							$out .= "     src=\"" . get_header_image() . "\"";
+							$out .= " 	  height=\"" . get_custom_header()->height . "\"";
+							$out .= " 	  width=\"" . get_custom_header()->width . "\"";
+							$out .= " 	  alt=\"" . get_bloginfo( 'name' ) . "\"";
+							$out .= " 	  />";
+							$out .= "</a>";
+						} else {
+							$a_tag = "<a class=\"navbar-brand\"";
+							$a_tag .= "  href=\"" . esc_url( home_url( '/' ) ) . "\"";
+							$a_tag .= "  title=\"" . esc_attr( get_bloginfo( 'name', 'display' ) ) . "\"";
+							$a_tag .= "  rel=\"home\">";
+							$a_tag .= bloginfo( 'name' );
+							$a_tag .= "</a>";
+							if( is_home() ){
+								$out .= '<h1 class="site-name">' . $a_tag . '</h1>';
+							} else {
+								$out .= '<p class="site-name">' . $a_tag . '</p>';
+							}
+						}
+						$out .= "</div> <!-- end of #logo -->";
+						return $out;
+					}
+				?>
+				<div class="row">
+					<div class="site-navigation-inner col-xs-7 col-sm-12">
 						<div class="navbar-header">
-							<?php if( get_header_image() != '' ) : ?>
-
-							<div id="logo">
-								<a href="<?php echo esc_url( home_url( '/' ) ); ?>"><img src="<?php header_image(); ?>"  height="<?php echo get_custom_header()->height; ?>" width="<?php echo get_custom_header()->width; ?>" alt="<?php bloginfo( 'name' ); ?>"/></a>
-							</div><!-- end of #logo -->
-
-							<?php endif; // header image was removed ?>
-
-							<?php if( !get_header_image() ) : ?>
-
-							<div id="logo">
-								<?php echo is_home() ?  '<h1 class="site-name">' : '<p class="site-name">'; ?>
-									<a class="navbar-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a>
-								<?php echo is_home() ?  '</h1>' : '</p>'; ?>
-							</div><!-- end of #logo -->
-
-							<?php endif; // header image was removed (again) ?>
-
+							<?php echo get_logo(); ?>
 						</div>
+					</div>
+					<div class="site-navigation-inner-icons-xs visible-xs-block col-xs-5">
+						<?php echo get_icons($header_icons); ?>
 					</div>
 					<div class="site-navigation-innter-bottom col-xs-12 col-sm-9">
 						<button type="button" class="btn navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
@@ -105,21 +141,8 @@ if (isset($_SERVER['HTTP_USER_AGENT']) && (strpos($_SERVER['HTTP_USER_AGENT'], '
 						</button>
 						<?php sparkling_header_menu(); // main navigation ?>
 					</div>
-					<div class="site-navigation-innter-icons hide-xs col-sm-3">
-						<?php
-							foreach($header_icons as $header_icon){
-								$defaults = array(
-									'icon'=>'question',
-									'link'=>'#',
-									'title'=>'title'
-								);
-								$header_icon = array_merge($defaults, $header_icon);
-								?>
-								<a href="<?php echo $header_icon['link']; ?>" type="button" class="btn navbar-toggle navbar-toggle-show" data-toggle="tooltip" data-placement="bottom" title="<?php echo $header_icon['title']; ?>">
-								<i class="fa fa-<?php echo $header_icon['icon']; ?> fa-lg" aria-hidden="true"></i>
-								</a>
-							<?php }
-						?>
+					<div class="site-navigation-innter-icons-sm hidden-xs col-sm-3">
+						<?php echo get_icons($header_icons); ?>
 					</div>
 				</div>
 			</div>

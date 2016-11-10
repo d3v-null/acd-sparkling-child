@@ -17,13 +17,15 @@
 
 /* =Header
 ----------------------------------------------- */
-div#logo {
+/*div#logo {
   height: auto;
   width: auto;
   max-width: 90%;
   margin: 0 auto;
   display: block;
-}
+}*/
+
+/* Center header navbar */
 
 @media (min-width: 768px) {
     .navbar .navbar-nav {

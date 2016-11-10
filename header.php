@@ -87,7 +87,7 @@ if (isset($_SERVER['HTTP_USER_AGENT']) && (strpos($_SERVER['HTTP_USER_AGENT'], '
 							$out .= "<a type=\"button\"";
 							$out .= "   href=\"{$header_icon['link']}\"";
 							$out .= "   title=\"{$header_icon['title']}\"";
-							$out .= "   class=\"btn navbar-toggle navbar-toggle-show\"";
+							$out .= "   class=\"btn navbar-toggle show\"";
 							$out .= "   data-toggle=\"tooltip\" data-placement=\"bottom\">";
 							$out .= "<i class=\"fa fa-{$header_icon['icon']} fa-lg\"";
 							$out .= "   aria-hidden=\"true\"></i>";
@@ -99,7 +99,9 @@ if (isset($_SERVER['HTTP_USER_AGENT']) && (strpos($_SERVER['HTTP_USER_AGENT'], '
 					function get_logo(){
 						$out = "<div id=\"logo\">";
 						if( get_header_image() != '' ) {
-							$out .= "<a href=\"" . esc_url( home_url( '/' ) ). "\">";
+							$out .= "<a ";
+							$out .= "   class=\"centre-block\"";
+							$out .= "   href=\"" . esc_url( home_url( '/' ) ). "\">";
 							$out .= "<img ";
 							$out .= "     class=\"img-responseive\"";
 							$out .= "     src=\"" . get_header_image() . "\"";
@@ -126,23 +128,32 @@ if (isset($_SERVER['HTTP_USER_AGENT']) && (strpos($_SERVER['HTTP_USER_AGENT'], '
 					}
 				?>
 				<div class="row">
-					<div class="site-navigation-inner col-xs-7 col-sm-12">
-						<div class="navbar-header">
-							<?php echo get_logo(); ?>
+					<div class="col-xs-9 col-sm-12">
+						<div class="fa fa-lg btn navbar-toggle site-navigation-xs-top-hack-spacing visible-xs-block">
+							&nbsp;
+						</div>
+						<div class="navbar-header site-navigation-xs-top-hack-outer">
+							<div class="site-navigation-xs-top-hack-inner site-navigation-xs-top-hack-inner-left">
+								<?php echo get_logo(); ?>
+							</div>
 						</div>
 					</div>
-					<div class="site-navigation-inner-icons-xs visible-xs-block col-xs-5">
-						<?php echo get_icons($header_icons); ?>
+					<div class="site-navigation-xs-top-inner col-xs-3 col-sm-push-9">
+						<div class="fa fa-lg btn navbar-toggle site-navigation-xs-top-hack-spacing visible-xs-block">
+							&nbsp;
+						</div>
+						<div class="navbar-header site-navigation-xs-top-hack-outer">
+							<div class="site-navigation-xs-top-hack-inner site-navigation-xs-top-hack-inner-right">
+								<?php echo get_icons($header_icons); ?>
+							</div>
+						</div>
 					</div>
-					<div class="site-navigation-innter-bottom col-xs-12 col-sm-9">
+					<div class="col-xs-12 col-sm-9 col-sm-pull-3">
 						<button type="button" class="btn navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
 							<span class="sr-only">Toggle navigation</span>
 							<i class="fa fa-bars fa-lg" aria-hidden="true"></i>
 						</button>
 						<?php sparkling_header_menu(); // main navigation ?>
-					</div>
-					<div class="site-navigation-innter-icons-sm hidden-xs col-sm-3">
-						<?php echo get_icons($header_icons); ?>
 					</div>
 				</div>
 			</div>

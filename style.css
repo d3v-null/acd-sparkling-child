@@ -39,12 +39,47 @@
     }
 }
 
-/*@media (max-width: 767px) {
-    .site-navigation-innter-bottom{
-        display: none;
-    }
-}*/
+/* Nav bar hacks */
 
-.navbar-toggle.navbar-toggle-show {
-    display:inherit;
+.site-navigation-xs-top-hack-spacing {
+  border-style: none;
+}
+
+@media (max-width: 767px) {
+  .site-navigation-xs-top-hack-outer {
+    position: relative;
+    width: 100%;
+  }
+
+  .site-navigation-xs-top-hack-inner-right {
+    position: absolute;
+    right: 0px;
+    width: 200%;
+    height: 100%;
+  }
+
+  .site-navigation-xs-top-hack-inner-left {
+    position: absolute;
+    left: 0px;
+    height: 100%;
+  };
+
+  div#logo {
+    height: 100%;
+  }
+
+  div#logo img {
+   max-height: 100%;
+   width: auto;
+  }
+}
+
+@media (max-width: 440px) {
+  .site-navigation-xs-top-hack-inner-right {
+    width: 300%;
+  }
+
+  .site-navigation-xs-top-hack-inner-left {
+    width: 75%;
+  }
 }

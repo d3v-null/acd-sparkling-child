@@ -5,10 +5,11 @@ A child of the Sparkling theme for the ACD website
 
 - Header
   - [x] Nav menu z-height
-  - [ ] My Account / logout buttons
-  - [ ] Header icons have tooltips
+  - [x] My Account / logout buttons
+  - [x] Header icons have tooltips
+  - [x] Visibility in reactive view
+  - [ ] ... all the way down to 300px
   - [ ] Nav menu font
-  - [ ] Visibility in reactive view
   - [ ] Grey bar at top in reactive view
   - [ ] Submenu font
   - [ ] Remove border?

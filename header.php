@@ -42,8 +42,8 @@ if (isset($_SERVER['HTTP_USER_AGENT']) && (strpos($_SERVER['HTTP_USER_AGENT'], '
 	);
 	$nav_classes = array(
 		'navbar',
-		'navbar-default',
-		// 'navbar-inverted'
+		// 'navbar-default',
+		'navbar-inverted'
 		// 'navbar-derwent',
 	);
 	$nav_header_classes = array(
@@ -60,7 +60,7 @@ if (isset($_SERVER['HTTP_USER_AGENT']) && (strpos($_SERVER['HTTP_USER_AGENT'], '
 	// );
 	$nav_content_classes = array(
 		'navbar-content',
-		'container-fluid',
+		// 'container-fluid',
 		// 'container'
 	);
 	$branding_classes = array();
@@ -95,7 +95,7 @@ if (isset($_SERVER['HTTP_USER_AGENT']) && (strpos($_SERVER['HTTP_USER_AGENT'], '
 	);
 	if( of_get_option('constrain_header') ) {
 		$header_classes[] = 'container';
-		$header_content_classes[] = 'container-fluid';
+		// $header_content_classes[] = 'container-fluid';
 	} else {
 		$header_classes[] = 'container-fluid';
 		$header_content_classes[] = 'container';

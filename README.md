@@ -8,14 +8,15 @@ A child of the Sparkling theme for the ACD website
   - [x] My Account / logout buttons
   - [x] Header icons have tooltips
   - [x] Visibility in reactive view
-  - [ ] ... all the way down to 300px
-  - [ ] Nav menu font
-  - [ ] Grey bar at top in reactive view
-  - [ ] Submenu font
-  - [ ] Remove border?
+  - [x] ... all the way down to 300px
+  - [x] Nav menu font
+  - [x] Grey bar at top in reactive view
+  - [x] Submenu font
+  - [x] Remove border?
 - Home
   - [ ] template remove title
   - [ ] template remove page border
+  - [ ] Template add carousel
   - [ ] template add widget spaces
 - Footer
   - [ ] Create widget spaces

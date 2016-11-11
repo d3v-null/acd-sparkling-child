@@ -6,24 +6,32 @@ if ( ! function_exists( 'get_acd_theme_options' ) ) {
     function get_acd_theme_options(){
         echo '<style id="acd-theme-options" type="text/css">';
         echo '/* Defined in ACD theme options of inc/extras.php */ ';
-        global $typography_options;
-        $typography = of_get_option('heading_typography');
 
-        if ( $typography ) {
-            $typo_css = '';
-
-            if(isset($typography_options['faces'][$typography['face']])){
-                $typo_css .= 'font-family: '. $typography_options['faces'][$typography['face']] . ';';
+        function get_typography_css_rules($typography){
+            global $typography_options;
+            $rules = array();
+            if ( !empty($typography )) {
+                if(isset($typography_options['faces'][$typography['face']])){
+                    $rules[] = 'font-family: '. $typography_options['faces'][$typography['face']];
+                }
+                if(isset($typography_options['style'])){
+                    $rules[] = '; font-weight: ' . $typography['style'];
+                }
             }
-            if(isset($typography_options['style'])){
-                $typo_css .= '; font-weight: ' . $typography['style'] . ';';
-            }
-            // . '; font-size:' . $typography['size']
-            //   . '; color:'.$typography['color']
-            if(!empty($typo_css)){
-                echo " h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .entry-title { $typo_css ;} ";
-            }
+            // echo "/* typography_options: ".serialize($typography_options)." */\n";
+            // echo "/* rules: ".serialize($rules)." */\n";
+            return implode('; ', $rules);
         }
+
+        $heading_typography = of_get_option('heading_typography');
+        // echo "/* heading typography: ".serialize($heading_typography)." */\n";
+
+        $heading_typo_css = get_typography_css_rules($heading_typography);
+        // echo "/* heading typo css: ".serialize($heading_typo_css)." */\n";
+        if(!empty($heading_typo_css)){
+            echo " h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .entry-title { $heading_typo_css ;} \n";
+        }
+
 
         $header_content_css = '';
         // $page_width = of_get_option('page_width');
@@ -39,7 +47,14 @@ if ( ! function_exists( 'get_acd_theme_options' ) ) {
         }
 
         if(!empty($header_content_css)){
-            echo " header#masthead { $header_content_css ;} ";
+            echo " header#masthead { $header_content_css ;} \n";
+        }
+
+        $navbar_css = '';
+        $navbar_typography = of_get_option('navbar_typography');
+        $navbar_typo_css = get_typography_css_rules($navbar_typography);
+        if(!empty($heading_typo_css)){
+            echo ".navbar a { $heading_typo_css ;} \n";
         }
 
         // $header_nav_menu_css = '';

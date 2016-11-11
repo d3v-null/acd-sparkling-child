@@ -37,6 +37,30 @@ function acd_customizer( $wp_customize ) {
         'choices'    => $typography_options['styles']
     ));
 
+    $wp_customize->add_setting('sparkling[navbar_typography][face]', array(
+        'default' => $typography_defaults['face'],
+        'type' => 'option',
+        'sanitize_callback' => 'sparkling_sanitize_typo_face'
+    ));
+    $wp_customize->add_control('sparkling[navbar_typography][face]', array(
+        'section' => 'sparkling_typography_options',
+        'label' => __('Navbars'),
+        'description' => __('Navbar typography'),
+        'type'    => 'select',
+        'choices'    => $typography_options['faces']
+    ));
+    $wp_customize->add_setting('sparkling[navbar_typography][style]', array(
+        'default' => $typography_defaults['style'],
+        'type' => 'option',
+        'sanitize_callback' => 'sparkling_sanitize_typo_style'
+    ));
+    $wp_customize->add_control('sparkling[navbar_typography][style]', array(
+        'section' => 'sparkling_typography_options',
+        // 'description' => __('Navbar typography style'),
+        'type'    => 'select',
+        'choices'    => $typography_options['styles']
+    ));
+
     /* modifications to sparkling layout options */
 
     // $wp_customize->add_setting('sparkling[page_width]', array(
@@ -63,6 +87,8 @@ function acd_customizer( $wp_customize ) {
         'description'  => __('Tick to constrain header, if off header is fullscreen')
     ));
 
+    //TODO: remove sticky header
+
     /* modifications to sparkling header options */
     //
     $wp_customize->add_setting(
@@ -87,21 +113,21 @@ function acd_customizer( $wp_customize ) {
         )
     );
 
-    $wp_customize->add_setting(
-        'sparkling[header_nav_position]',
-        array(
-            'default' => 'center',
-            'type'      => 'option',
-            'sanitize_callback' => ''
-        )
-    );
-
-    $wp_customize->add_control('sparkling[header_nav_position]', array(
-        'section' => 'sparkling_header_options',
-        'description' => __('Header nav menu position'),
-        'type'    => 'select',
-        'choices'    => $typography_options['horizontal-positions']
-    ));
+    // $wp_customize->add_setting(
+    //     'sparkling[header_nav_position]',
+    //     array(
+    //         'default' => 'center',
+    //         'type'      => 'option',
+    //         'sanitize_callback' => ''
+    //     )
+    // );
+    //
+    // $wp_customize->add_control('sparkling[header_nav_position]', array(
+    //     'section' => 'sparkling_header_options',
+    //     'description' => __('Header nav menu position'),
+    //     'type'    => 'select',
+    //     'choices'    => $typography_options['horizontal-positions']
+    // ));
 
 }
 add_action( 'customize_register', 'acd_customizer' );

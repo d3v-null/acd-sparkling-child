@@ -31,133 +31,188 @@ if (isset($_SERVER['HTTP_USER_AGENT']) && (strpos($_SERVER['HTTP_USER_AGENT'], '
 </head>
 
 <body <?php body_class(); ?>>
+<?php
+
+	$icon_container = 'div';
+	$header_classes = array(
+		'site-header'
+	);
+	$header_content_classes = array(
+		'header-content'
+	);
+	$nav_classes = array(
+		'navbar',
+		'navbar-default',
+		// 'navbar-inverted'
+		// 'navbar-derwent',
+	);
+	$nav_header_classes = array(
+		'navbar-header',
+		'navbar-right',
+		'container-fluid'
+	);
+	// $nav_header_classes = array(
+	// 	'navbar',
+	// 	// 'navbar-nav',
+	// 	'navbar-form',
+	// 	'clearfix',
+	// 	// 'navbar-right'
+	// );
+	$nav_content_classes = array(
+		'navbar-content',
+		'container-fluid',
+		// 'container'
+	);
+	$branding_classes = array();
+	$icon_container_classes = array(
+		'navbar',
+		// 'navbar-form',
+		// 'navbar-right',
+		// 'clearfix',
+		// 'pull-left',
+		// 'pull-right',
+		// 'hidden-xs'
+	);
+	// $icon_container_classes = array(
+	// 	// 'navbar',
+	// 	// 'navbar-form',
+	// 	// 'navbar-right'
+	// 	'clearfix'
+	// );
+	$icon_a_classes = array(
+		'btn',
+		'navbar-toggle',
+		'btn-square',
+	);
+	// $icon_a_classes = array(
+	// 	'btn',
+	// 	'navbar-btn',
+	// 	'btn-square'
+	// );
+	$icon_i_classes = array(
+		'fa',
+		'fa-lg',
+	);
+	if( of_get_option('constrain_header') ) {
+		$header_classes[] = 'container';
+		$header_content_classes[] = 'container-fluid';
+	} else {
+		$header_classes[] = 'container-fluid';
+		$header_content_classes[] = 'container';
+	}
+
+	$header_icons = array();
+	if ( is_user_logged_in() ){
+		$header_icons[] = array(
+			'icon'=>'user',
+			'link'=>site_url( "/my-account"),
+			'title'=>'My Account'
+		);
+		$header_icons[] = array(
+			'icon'=>'sign-out',
+			'link'=>wp_logout_url( ),
+			'title'=>'Sign out'
+		);
+	} else {
+		$header_icons[] = array(
+			'icon'=>'sign-in',
+			'link'=>wp_login_url( ),
+			'title'=>'Sign in'
+		);
+		$header_icons[] = array(
+			'icon'=>'user-plus',
+			'link'=>site_url( "/wholesale-access" ),
+			'title'=>'Create Account'
+		);
+	}
+
+	function get_icons($header_icons, $icon_container='div', $icon_container_classes, $icon_i_classes, $icon_a_classes)
+	{
+		$out = '';
+		if(!empty($header_icons)){
+			// $out .= "<{$icon_container}";
+			// $out .="  class=\"";
+			// $out .=   	implode(' ', $icon_container_classes);
+			// $out .= " \">";
+			foreach($header_icons as $header_icon){
+				$defaults = array(
+					'icon'=>'question',
+					'link'=>'#',
+					'title'=>'title'
+				);
+				$header_icon = array_merge($defaults, $header_icon);
+				// $out .= "<li>";
+				$out .= "<a";
+				$out .= "   href=\"{$header_icon['link']}\"";
+				$out .= "   title=\"{$header_icon['title']}\"";
+				$out .= "   class=\"";
+				$out .= 		implode(" ", $icon_a_classes);
+				$out .= 		" show\"";
+				$out .= "   data-toggle=\"tooltip\" data-placement=\"bottom\">";
+				$out .= "<i class=\"";
+				$out .=     	implode(' ', $icon_i_classes);
+				$out .= 		" fa-{$header_icon['icon']}\"";
+				$out .= 		" aria-hidden=\"true\"></i>";
+				$out .= "</a>";
+				// $out .= "</li>";
+			}
+			// $out .= "</$icon_container>";
+		}
+		return $out;
+	}
+
+	function get_branding($branding_classes){
+		$out = "<div id=\"branding\" class=\"";
+		$out .= implode(' ', $branding_classes);
+		$out .= "\">";
+		if( get_header_image() != '' ) {
+			$out .= "<a ";
+			$out .= "   class=\"centre-block\"";
+			$out .= "   href=\"" . esc_url( home_url( '/' ) ). "\">";
+			$out .= "<img ";
+			$out .= "     class=\"img-responseive\"";
+			$out .= "     src=\"" . get_header_image() . "\"";
+			$out .= " 	  height=\"" . get_custom_header()->height . "\"";
+			$out .= " 	  width=\"" . get_custom_header()->width . "\"";
+			$out .= " 	  alt=\"" . get_bloginfo( 'name' ) . "\"";
+			$out .= " 	  />";
+			$out .= "</a>";
+		} else {
+			$a_tag = "<a class=\"navbar-brand\"";
+			$a_tag .= "  href=\"" . esc_url( home_url( '/' ) ) . "\"";
+			$a_tag .= "  title=\"" . esc_attr( get_bloginfo( 'name', 'display' ) ) . "\"";
+			$a_tag .= "  rel=\"home\">";
+			$a_tag .= bloginfo( 'name' );
+			$a_tag .= "</a>";
+			if( is_home() ){
+				$out .= '<h1 class="site-name">' . $a_tag . '</h1>';
+			} else {
+				$out .= '<p class="site-name">' . $a_tag . '</p>';
+			}
+		}
+		$out .= "</div> <!-- end of #branding -->";
+		return $out;
+	}
+?>
+
 <a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
 <div id="page" class="hfeed site">
-
-	<header id="masthead" class="site-header" role="banner">
-		<?php
-		 	$nav_classes = array('navbar', 'navbar-default');
-			$sub_nav_classes = array('container');
-			if( of_get_option('sticky_header') ) {
-				$nav_classes[] = 'navbar-fixed-top';
-			}
-			if( of_get_option('constrain_header') ) {
-				$nav_classes[] = 'container';
-				$sub_nav_classes = array_diff($sub_nav_classes, array('container'));
-			}
-		?>
-		<nav class="<?php echo implode(' ', $nav_classes); ?>" role="navigation">
-			<div class="<?php echo implode(' ', $sub_nav_classes); ?>">
-				<?php
-					$header_icons = array();
-					if ( is_user_logged_in() ){
-						$header_icons[] = array(
-							'icon'=>'user',
-							'link'=>site_url( "/my-account"),
-							'title'=>'My Account'
-						);
-						$header_icons[] = array(
-							'icon'=>'sign-out',
-							'link'=>wp_logout_url( ),
-							'title'=>'Sign out'
-						);
-					} else {
-						$header_icons[] = array(
-							'icon'=>'sign-in',
-							'link'=>wp_login_url( ),
-							'title'=>'Sign in'
-						);
-						$header_icons[] = array(
-							'icon'=>'user-plus',
-							'link'=>site_url( "/wholesale-access" ),
-							'title'=>'Create Account'
-						);
-					}
-
-					function get_icons($header_icons)
-					{
-						$out = '';
-						foreach($header_icons as $header_icon){
-							$defaults = array(
-								'icon'=>'question',
-								'link'=>'#',
-								'title'=>'title'
-							);
-							$header_icon = array_merge($defaults, $header_icon);
-							$out .= "<a type=\"button\"";
-							$out .= "   href=\"{$header_icon['link']}\"";
-							$out .= "   title=\"{$header_icon['title']}\"";
-							$out .= "   class=\"btn navbar-toggle show\"";
-							$out .= "   data-toggle=\"tooltip\" data-placement=\"bottom\">";
-							$out .= "<i class=\"fa fa-{$header_icon['icon']} fa-lg\"";
-							$out .= "   aria-hidden=\"true\"></i>";
-							$out .= "</a>";
-						}
-						return $out;
-					}
-
-					function get_logo(){
-						$out = "<div id=\"logo\">";
-						if( get_header_image() != '' ) {
-							$out .= "<a ";
-							$out .= "   class=\"centre-block\"";
-							$out .= "   href=\"" . esc_url( home_url( '/' ) ). "\">";
-							$out .= "<img ";
-							$out .= "     class=\"img-responseive\"";
-							$out .= "     src=\"" . get_header_image() . "\"";
-							$out .= " 	  height=\"" . get_custom_header()->height . "\"";
-							$out .= " 	  width=\"" . get_custom_header()->width . "\"";
-							$out .= " 	  alt=\"" . get_bloginfo( 'name' ) . "\"";
-							$out .= " 	  />";
-							$out .= "</a>";
-						} else {
-							$a_tag = "<a class=\"navbar-brand\"";
-							$a_tag .= "  href=\"" . esc_url( home_url( '/' ) ) . "\"";
-							$a_tag .= "  title=\"" . esc_attr( get_bloginfo( 'name', 'display' ) ) . "\"";
-							$a_tag .= "  rel=\"home\">";
-							$a_tag .= bloginfo( 'name' );
-							$a_tag .= "</a>";
-							if( is_home() ){
-								$out .= '<h1 class="site-name">' . $a_tag . '</h1>';
-							} else {
-								$out .= '<p class="site-name">' . $a_tag . '</p>';
-							}
-						}
-						$out .= "</div> <!-- end of #logo -->";
-						return $out;
-					}
-				?>
-				<div class="row">
-					<div class="col-xs-9 col-sm-12">
-						<div class="fa fa-lg btn navbar-toggle site-navigation-xs-top-hack-spacing visible-xs-block">
-							&nbsp;
-						</div>
-						<div class="navbar-header site-navigation-xs-top-hack-outer">
-							<div class="site-navigation-xs-top-hack-inner site-navigation-xs-top-hack-inner-left">
-								<?php echo get_logo(); ?>
-							</div>
-						</div>
-					</div>
-					<div class="site-navigation-xs-top-inner col-xs-3 col-sm-push-9">
-						<div class="fa fa-lg btn navbar-toggle site-navigation-xs-top-hack-spacing visible-xs-block">
-							&nbsp;
-						</div>
-						<div class="navbar-header site-navigation-xs-top-hack-outer">
-							<div class="site-navigation-xs-top-hack-inner site-navigation-xs-top-hack-inner-right">
-								<?php echo get_icons($header_icons); ?>
-							</div>
-						</div>
-					</div>
-					<div class="col-xs-12 col-sm-9 col-sm-pull-3">
-						<button type="button" class="btn navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-							<span class="sr-only">Toggle navigation</span>
-							<i class="fa fa-bars fa-lg" aria-hidden="true"></i>
-						</button>
-						<?php sparkling_header_menu(); // main navigation ?>
-					</div>
+	<header id="masthead" class="<?php echo implode(' ', $header_classes); ?>" role="banner">
+		<div class="<?php echo implode(' ', $header_content_classes); ?>">
+			<?php echo get_branding($branding_classes); ?>
+			<nav class="<?php echo implode(' ', $nav_classes); ?>" role="navigation">
+				<div class="<?php echo implode(' ', $nav_header_classes); ?>">
+					<a type="button" class="<?php echo implode(' ', $icon_a_classes); ?>" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+						<span class="sr-only">Toggle navigation</span>
+						<i class="<?php echo implode(' ', $icon_i_classes); ?> fa-bars" aria-hidden="true"></i>
+					</a>
+					<?php echo get_icons($header_icons, $icon_container, $icon_container_classes, $icon_i_classes, $icon_a_classes); ?>
 				</div>
-			</div>
-		</nav><!-- .site-navigation -->
+				<div class="<?php echo implode(' ', $nav_content_classes); ?>">
+					<?php acd_header_menu(); // main navigation ?>
+				</div>
+			</nav>
+		</div><!-- .header-content -->
 	</header><!-- #masthead -->
 
 	<div id="content" class="site-content">

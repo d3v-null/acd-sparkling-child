@@ -25,21 +25,21 @@ if ( ! function_exists( 'get_acd_theme_options' ) ) {
             }
         }
 
-        $header_nav_css = '';
+        $header_content_css = '';
         // $page_width = of_get_option('page_width');
         // if ( $page_width ) {
         //     $header_nav_css .= "max-width:{$page_width}px; margin: 0 auto;";
         // }
 
-        $header_nav_bg_url = of_get_option('header_background_url');
-        if( !empty($header_nav_bg_url) ) {
-            $header_nav_css .= "background-image: url( \"$header_nav_bg_url\"); ";
-            $header_nav_css .= "background-position: bottom; ";
-            $header_nav_css .= "background-size: cover; ";
+        $header_content_bg_url = of_get_option('header_background_url');
+        if( !empty($header_content_bg_url) ) {
+            $header_content_css .= "background-image: url( \"$header_content_bg_url\"); ";
+            $header_content_css .= "background-position: bottom; ";
+            $header_content_css .= "background-size: cover; ";
         }
 
-        if(!empty($header_nav_css)){
-            echo " header#masthead nav { $header_nav_css ;} ";
+        if(!empty($header_content_css)){
+            echo " header#masthead { $header_content_css ;} ";
         }
 
         // $header_nav_menu_css = '';
@@ -71,6 +71,25 @@ if ( ! function_exists( 'get_acd_theme_options' ) ) {
     }
 
 }
+
+if ( ! function_exists( 'acd_header_menu' ) ) :
+/**
+ * Header menu (should you choose to use one)
+ */
+function acd_header_menu() {
+  // display the WordPress Custom Menu if available
+  wp_nav_menu(array(
+    'menu'              => 'primary',
+    'theme_location'    => 'primary',
+    'depth'             => 2,
+    'container'         => 'div',
+    'container_class'   => 'collapse navbar-collapse navbar-ex1-collapse navbar-left',
+    'menu_class'        => 'nav navbar-nav',
+    'fallback_cb'       => 'wp_bootstrap_navwalker::fallback',
+    'walker'            => new wp_bootstrap_navwalker()
+  ));
+} /* end header menu */
+endif;
 
 
 add_action( 'wp_head', 'get_acd_theme_options', 10 );

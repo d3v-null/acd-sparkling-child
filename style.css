@@ -17,6 +17,49 @@
 
 /* =Header
 ----------------------------------------------- */
+
+/* Fix to center buttons in navbar */
+.btn-square i {
+  width: 1.5ex;
+}
+
+@media (min-width: 768px) {
+  .navbar-derwent .navbar{
+
+  }
+  .navbar-inverted .navbar-toggle {
+    height: 20px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-top-width: 0px;
+    border-bottom-width: 0px;
+    border-left-width: 0px;
+    border-right-width: 0px
+  }
+  .navbar-default .navbar-header{
+    padding-top: 14px;
+    padding-bottom: 14px;
+  }
+  .navbar-default .navbar-toggle.show{
+    box-sizing: border-box;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    /*border-top-width: 0px;
+    border-bottom-width: 0px;
+    border-left-width: 0px;
+    border-right-width: 0px;*/
+    display: block;
+  }
+}
+
+.navbar {}
+
 /*div#logo {
   height: auto;
   width: auto;
@@ -27,21 +70,21 @@
 
 /* Center header navbar */
 
-@media (min-width: 768px) {
+/*@media (min-width: 768px) {
     .navbar .navbar-nav {
         display: inline-block;
-        float: none;
+        float: left;
         vertical-align: top;
     }
 
     .navbar .navbar-collapse {
         text-align: center;
     }
-}
+}*/
 
 /* Nav bar hacks */
 
-.site-navigation-xs-top-hack-spacing {
+/*.site-navigation-xs-top-hack-spacing {
   border-style: none;
 }
 
@@ -82,4 +125,4 @@
   .site-navigation-xs-top-hack-inner-left {
     width: 75%;
   }
-}
+}*/

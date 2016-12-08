@@ -13,6 +13,7 @@
 /* Table of content
 -----------------------------------------------
 1. Header
+2. Widgets
 */
 
 /* =Header
@@ -58,69 +59,10 @@
 
 .navbar {}
 
-/*div#logo {
-  height: auto;
-  width: auto;
-  max-width: 90%;
-  margin: 0 auto;
-  display: block;
-}*/
+/* =Widgets
+----------------------------------------------- */
 
-/* Center header navbar */
-
-/*@media (min-width: 768px) {
-    .navbar .navbar-nav {
-        display: inline-block;
-        float: left;
-        vertical-align: top;
-    }
-
-    .navbar .navbar-collapse {
-        text-align: center;
-    }
-}*/
-
-/* Nav bar hacks */
-
-/*.site-navigation-xs-top-hack-spacing {
-  border-style: none;
+/* Fix search widget button white on white */
+#searchsubmit {
+  color: black;
 }
-
-@media (max-width: 767px) {
-  .site-navigation-xs-top-hack-outer {
-    position: relative;
-    width: 100%;
-  }
-
-  .site-navigation-xs-top-hack-inner-right {
-    position: absolute;
-    right: 0px;
-    width: 200%;
-    height: 100%;
-  }
-
-  .site-navigation-xs-top-hack-inner-left {
-    position: absolute;
-    left: 0px;
-    height: 100%;
-  };
-
-  div#logo {
-    height: 100%;
-  }
-
-  div#logo img {
-   max-height: 100%;
-   width: auto;
-  }
-}
-
-@media (max-width: 440px) {
-  .site-navigation-xs-top-hack-inner-right {
-    width: 300%;
-  }
-
-  .site-navigation-xs-top-hack-inner-left {
-    width: 75%;
-  }
-}*/

@@ -23,8 +23,9 @@ A child of the Sparkling theme for the ACD website
 - Pages
   - [ ] Fix breadcrumbs font
 - Sidebars
-  - [ ] Fix search widget icon
+  - [x] Fix search widget icon
   - [ ] Fix &lt;li&gt; font
+  - [ ] Fix grey on grey
 - WooCommerce
   - [ ] Remove mark.count
   - [ ] Custom button colour

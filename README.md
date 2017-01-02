@@ -29,12 +29,13 @@ A child of the Sparkling theme for the ACD website
   - [ ] Don't show image at top
 - Sidebars
   - [x] Fix search widget icon
-  - [ ] Fix &lt;li&gt; font
-  - [ ] Fix grey on grey
+  - [x] Fix &lt;li&gt; font
+  - [x] Fix grey on grey
 - WooCommerce
   - [x] Remove mark.count
   - [x] price highlight same as button
+  - [x] configure button color
   - [x] heading colour hover inherit
-  - [ ] heading size bump
+  - [x] heading size bump
 - Typography
-  - [ ] &lt;a&gt; underlined
+  - [x] &lt;a&gt; underlined

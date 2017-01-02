@@ -181,7 +181,7 @@ if ( ! function_exists( 'get_acd_theme_options' ) ) {
         if(of_get_option('highlight_color')){
             $highlight_color = of_get_option('highlight_color');
             echo ".woocommerce div.product p.price, .woocommerce div.product span.price { color: $highlight_color; }\n";
-            echo ".woocommerce div.product .stock { color: $highlight_color ; }\n";
+            // echo ".woocommerce div.product .stock { color: $highlight_color ; }\n";
             echo ".woocommerce span.onsale { background-color: $highlight_color ; }\n";
             echo ".woocommerce ul.products li.product .price { color: $highlight_color ; }\n";
         }

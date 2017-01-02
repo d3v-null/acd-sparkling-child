@@ -80,8 +80,36 @@
 
 /* Fix search widget button white on white */
 #searchsubmit {
-  color: black;
+  color: white;
 }
+
+/* widget link colour back to bootstrap default */
+
+#secondary .widget {
+  color: inherit;
+}
+
+#secondary .widget a {
+  color: inherit;
+  /*color: #337ab7;*/
+}
+
+#secondary .widget a.button {
+  color: white;
+}
+
+/*#secondary .widget a:hover {
+  color: #23527c;
+}*/
+
+/* remove weird borders and spacing in category list widget */
+
+#secondary .widget ul li.cat-item {
+  margin-bottom: 2px;
+  padding-bottom: 2px;
+  border-bottom-style: none;
+}
+
 
 /* =WooCommerce
 ----------------------------------------------- */
@@ -99,4 +127,16 @@ li.product a:hover h3{
 /* bump product heading font size */
 li.product h3 {
   font-size: 110%;
+}
+
+.woocommerce a.button {
+  background-color: black;
+  color: white;
+}
+
+/* =Other
+----------------------------------------------- */
+.btn-default {
+  color:white;
+  background-color: black;
 }

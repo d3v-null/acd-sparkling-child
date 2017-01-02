@@ -13,11 +13,18 @@ A child of the Sparkling theme for the ACD website
   - [x] Grey bar at top in reactive view
   - [x] Submenu font
   - [x] Remove border?
+  - [x] Black nav font
+  - [x] bump up font size
 - Home
-  - [ ] template remove title
-  - [ ] template remove page border
-  - [ ] Template add carousel
+  - [x] template remove title
+  - [x] template remove page border
+  - [x] Template add carousel
   - [ ] template add widget spaces
+- Grid
+  - [ ] decrease font size to fit tablet width
+- Carousel
+  - [ ] Style as single box instead of separate title and content
+  - [ ] White background boxes rgba(255, 255, 255, 0.9);, black text
 - Footer
   - [ ] Create widget spaces
 - Pages
@@ -28,6 +35,9 @@ A child of the Sparkling theme for the ACD website
   - [ ] Fix grey on grey
 - WooCommerce
   - [ ] Remove mark.count
-  - [ ] Custom button colour
+  - [ ] price highlight same as button
+  - [ ] title in black
 - Typography
   - [ ] &lt;a&gt; underlined
+- Pages
+  - [ ] Don't show image at top

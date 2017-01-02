@@ -57,7 +57,11 @@
   }
 }
 
-.navbar {}
+/* bump up navbar font size */
+
+#masthead .navbar li a {
+  font-size: 110%;
+}
 
 /* =Home
 ----------------------------------------------- */

@@ -1,26 +1,33 @@
 <?php
+
 if ( ! function_exists( 'get_acd_theme_options' ) ) {
     /**
      * Get information from Theme Options and add it into wp_head
      */
     function get_acd_theme_options(){
         echo '<style id="acd-theme-options" type="text/css">';
-        echo '/* Defined in ACD theme options of inc/extras.php */ ';
+        echo '/* Defined in ACD theme options of inc/extras.php */ \n';
 
         function get_typography_css_rules($typography){
             global $typography_options;
             $rules = array();
-            if ( !empty($typography )) {
+            if ( !empty($typography ) ) {
                 if(isset($typography_options['faces'][$typography['face']])){
                     $rules[] = 'font-family: '. $typography_options['faces'][$typography['face']];
                 }
                 if(isset($typography_options['style'])){
-                    $rules[] = '; font-weight: ' . $typography['style'];
+                    $rules[] = 'font-weight: ' . $typography['style'];
+                }
+                if(isset($typography['color'])){
+                    $rules[] = 'color: '. $typography['color'];
                 }
             }
+            $response = implode('; ', $rules);
             // echo "/* typography_options: ".serialize($typography_options)." */\n";
+            // echo "/* typography array: ".serialize($typography)." */\n";
             // echo "/* rules: ".serialize($rules)." */\n";
-            return implode('; ', $rules);
+            // echo "/* response: ".serialize($response)." */\n";
+            return $response;
         }
 
         $heading_typography = of_get_option('heading_typography');
@@ -52,9 +59,12 @@ if ( ! function_exists( 'get_acd_theme_options' ) ) {
 
         $navbar_css = '';
         $navbar_typography = of_get_option('navbar_typography');
+        if(of_get_option('nav_link_color')){
+            $navbar_typography['color'] = of_get_option('nav_link_color');
+        }
         $navbar_typo_css = get_typography_css_rules($navbar_typography);
-        if(!empty($heading_typo_css)){
-            echo ".navbar a { $heading_typo_css ;} \n";
+        if(!empty($navbar_typo_css)){
+            echo ".navbar a { $navbar_typo_css ;} \n";
         }
 
         // $header_nav_menu_css = '';

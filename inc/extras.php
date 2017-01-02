@@ -6,7 +6,7 @@ if ( ! function_exists( 'get_acd_theme_options' ) ) {
      */
     function get_acd_theme_options(){
         echo '<style id="acd-theme-options" type="text/css">';
-        echo '/* Defined in ACD theme options of inc/extras.php */ \n';
+        echo "/* Defined in ACD theme options of inc/extras.php */\n";
 
         function get_typography_css_rules($typography){
             global $typography_options;
@@ -28,6 +28,44 @@ if ( ! function_exists( 'get_acd_theme_options' ) ) {
             // echo "/* rules: ".serialize($rules)." */\n";
             // echo "/* response: ".serialize($response)." */\n";
             return $response;
+        }
+
+        function hex2rgba($color, $opacity=false ){
+
+            $default = 'rgb(0,0,0)';
+
+            //Return default if no color provided
+            if(empty($color))
+            return $default;
+
+            //Sanitize $color if "#" is provided
+            if ($color[0] == '#' ) {
+                $color = substr( $color, 1 );
+            }
+
+            //Check if color has 6 or 3 characters and get values
+            if (strlen($color) == 6) {
+                $hex = array( $color[0] . $color[1], $color[2] . $color[3], $color[4] . $color[5] );
+            } elseif ( strlen( $color ) == 3 ) {
+                $hex = array( $color[0] . $color[0], $color[1] . $color[1], $color[2] . $color[2] );
+            } else {
+                return $default;
+            }
+
+            //Convert hexadec to rgb
+            $rgb =  array_map('hexdec', $hex);
+
+            //Check if opacity is set(rgba or rgb)
+            if($opacity){
+                if(abs($opacity) > 1)
+                    $opacity = 1.0;
+                $output = 'rgba('.implode(",",$rgb).','.$opacity.')';
+            } else {
+                $output = 'rgb('.implode(",",$rgb).')';
+            }
+
+            //Return rgb(a) color string
+            return $output;
         }
 
         $heading_typography = of_get_option('heading_typography');
@@ -91,6 +129,54 @@ if ( ! function_exists( 'get_acd_theme_options' ) ) {
         //     echo " header#masthead nav ul.nav { $header_nav_menu_css ;} ";
         // }
 
+        $carousel_typography = array(
+            '.entry-title'=>array(),
+            '.excerpt'=>array()
+        );
+        $carousel_caption_background_opacity = 1.0;
+        if(of_get_option('carousel_caption_background_opacity')){
+            echo "/* raw opacity: ".serialize(of_get_option('carousel_caption_background_opacity'))."*/\n";
+            $carousel_caption_background_opacity = floatval(of_get_option('carousel_caption_background_opacity'));
+            echo "/* floatval: ".serialize($carousel_caption_background_opacity)."*/\n";
+
+        }
+        if(of_get_option('carousel_title_background_color')){
+            $carousel_typography['.entry-title']['background'] =
+                hex2rgba(
+                    of_get_option('carousel_title_background_color'),
+                    $carousel_caption_background_opacity
+                );
+        }
+        if(of_get_option('carousel_excerpt_background_color')){
+            $carousel_typography['.excerpt']['background'] =
+                hex2rgba(
+                    of_get_option('carousel_excerpt_background_color'),
+                    $carousel_caption_background_opacity
+                );
+        }
+        if(of_get_option('carousel_title_text_color')){
+            $carousel_typography['.entry-title']['color'] =
+                of_get_option('carousel_title_text_color');
+        }
+        if(of_get_option('carousel_excerpt_text_color')){
+            $carousel_typography['.excerpt']['color'] =
+                of_get_option('carousel_excerpt_text_color');
+        }
+
+        echo "/* carousel_typography: ".serialize($carousel_typography)."*/\n";
+        echo "/* carousel_caption_background_opacity: ".serialize($carousel_caption_background_opacity)."*/\n";
+
+        foreach ($carousel_typography as $selector => $properties) {
+            if (! empty($properties)){
+                $css_pieces = array();
+                foreach ($properties as $property => $value) {
+                    $css_pieces[] = "$property: $value";
+                }
+                echo "#content .flexslider ".$selector."{".
+                    implode('; ', $css_pieces).
+                    "} \n";
+            }
+        }
 
         echo '</style>';
     }

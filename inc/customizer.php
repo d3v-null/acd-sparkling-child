@@ -146,6 +146,112 @@ function acd_customizer( $wp_customize ) {
         )
     );
 
+    /**
+     * Slider Options
+     */
+
+    $wp_customize->add_setting(
+        'sparkling[carousel_title_background_color]',
+        array(
+            'default'=> '',
+            'type'=> 'option',
+            'sanitize_callback' => 'sparkling_sanitize_hexcolor'
+        )
+    );
+
+    $wp_customize->add_control(
+        new WP_Customize_Color_Control(
+            $wp_customize,
+            'sparkling[carousel_title_background_color]',
+            array(
+                'label'=> __('Carousel title background colour'),
+                'settings'=>'sparkling[carousel_title_background_color]',
+                'section'=>'sparkling_slider_options'
+            )
+        )
+    );
+
+    $wp_customize->add_setting(
+        'sparkling[carousel_excerpt_background_color]',
+        array(
+            'default'=> '',
+            'type'=> 'option',
+            'sanitize_callback' => 'sparkling_sanitize_hexcolor'
+        )
+    );
+
+    $wp_customize->add_control(
+        new WP_Customize_Color_Control(
+            $wp_customize,
+            'sparkling[carousel_excerpt_background_color]',
+            array(
+                'label'=> __('Carousel excerpt background colour'),
+                'settings'=>'sparkling[carousel_excerpt_background_color]',
+                'section'=>'sparkling_slider_options'
+            )
+        )
+    );
+
+    $wp_customize->add_setting(
+        'sparkling[carousel_title_text_color]',
+        array(
+            'default'=> '',
+            'type'=> 'option',
+            'sanitize_callback' => 'sparkling_sanitize_hexcolor'
+        )
+    );
+
+    $wp_customize->add_control(
+        new WP_Customize_Color_Control(
+            $wp_customize,
+            'sparkling[carousel_title_text_color]',
+            array(
+                'label'=> __('Carousel title text colour'),
+                'settings'=>'sparkling[carousel_title_text_color]',
+                'section'=>'sparkling_slider_options'
+            )
+        )
+    );
+
+    $wp_customize->add_setting(
+        'sparkling[carousel_excerpt_text_color]',
+        array(
+            'default'=> '',
+            'type'=> 'option',
+            'sanitize_callback' => 'sparkling_sanitize_hexcolor'
+        )
+    );
+
+    $wp_customize->add_control(
+        new WP_Customize_Color_Control(
+            $wp_customize,
+            'sparkling[carousel_excerpt_text_color]',
+            array(
+                'label'=> __('Carousel excerpt text colour'),
+                'settings'=>'sparkling[carousel_excerpt_text_color]',
+                'section'=>'sparkling_slider_options'
+            )
+        )
+    );
+
+    $wp_customize->add_setting(
+        'sparkling[carousel_caption_background_opacity]',
+        array(
+            'default'=> '0.9',
+            'type'=> 'option',
+        )
+    );
+
+    $wp_customize->add_control(
+        'sparkling[carousel_caption_background_opacity]',
+        array(
+            'label'=> __('Carousel caption background opacity'),
+            'settings'=>'sparkling[carousel_caption_background_opacity]',
+            'section'=>'sparkling_slider_options',
+            'type'=>'text'
+        )
+    );
+
 
 }
 add_action( 'customize_register', 'acd_customizer' );

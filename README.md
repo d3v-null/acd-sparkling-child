@@ -22,9 +22,8 @@ A child of the Sparkling theme for the ACD website
   - [ ] template add widget spaces
 - Grid
   - [ ] decrease font size to fit tablet width
-- Carousel
-  - [ ] Style as single box instead of separate title and content
-  - [ ] White background boxes rgba(255, 255, 255, 0.9);, black text
+- Slider
+  - [x] White background boxes rgba(255, 255, 255, 0.9);, black text
 - Footer
   - [ ] Create widget spaces
 - Pages

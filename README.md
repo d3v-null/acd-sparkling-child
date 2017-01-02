@@ -20,23 +20,20 @@ A child of the Sparkling theme for the ACD website
   - [x] template remove page border
   - [x] Template add carousel
   - [ ] template add widget spaces
-- Grid
-  - [ ] decrease font size to fit tablet width
 - Slider
   - [x] White background boxes rgba(255, 255, 255, 0.9);, black text
 - Footer
   - [ ] Create widget spaces
 - Pages
   - [ ] Fix breadcrumbs font
+  - [ ] Don't show image at top
 - Sidebars
   - [x] Fix search widget icon
   - [ ] Fix &lt;li&gt; font
   - [ ] Fix grey on grey
 - WooCommerce
-  - [ ] Remove mark.count
+  - [x] Remove mark.count
   - [ ] price highlight same as button
   - [ ] title in black
 - Typography
   - [ ] &lt;a&gt; underlined
-- Pages
-  - [ ] Don't show image at top

@@ -13,7 +13,9 @@
 /* Table of content
 -----------------------------------------------
 1. Header
-2. Widgets
+2. Home
+3. Widgets
+4. WooCommerce
 */
 
 /* =Header
@@ -79,4 +81,12 @@
 /* Fix search widget button white on white */
 #searchsubmit {
   color: black;
+}
+
+/* =WooCommerce
+----------------------------------------------- */
+
+/* remove product count */
+mark.count {
+  display: none;
 }

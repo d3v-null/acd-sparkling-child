@@ -90,3 +90,13 @@
 mark.count {
   display: none;
 }
+
+/* product heading hover colour same as links */
+li.product a:hover h3{
+  color:inherit;
+}
+
+/* bump product heading font size */
+li.product h3 {
+  font-size: 110%;
+}

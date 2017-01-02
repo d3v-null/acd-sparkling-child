@@ -135,9 +135,9 @@ if ( ! function_exists( 'get_acd_theme_options' ) ) {
         );
         $carousel_caption_background_opacity = 1.0;
         if(of_get_option('carousel_caption_background_opacity')){
-            echo "/* raw opacity: ".serialize(of_get_option('carousel_caption_background_opacity'))."*/\n";
+            // echo "/* raw opacity: ".serialize(of_get_option('carousel_caption_background_opacity'))."*/\n";
             $carousel_caption_background_opacity = floatval(of_get_option('carousel_caption_background_opacity'));
-            echo "/* floatval: ".serialize($carousel_caption_background_opacity)."*/\n";
+            // echo "/* floatval: ".serialize($carousel_caption_background_opacity)."*/\n";
 
         }
         if(of_get_option('carousel_title_background_color')){
@@ -163,8 +163,8 @@ if ( ! function_exists( 'get_acd_theme_options' ) ) {
                 of_get_option('carousel_excerpt_text_color');
         }
 
-        echo "/* carousel_typography: ".serialize($carousel_typography)."*/\n";
-        echo "/* carousel_caption_background_opacity: ".serialize($carousel_caption_background_opacity)."*/\n";
+        // echo "/* carousel_typography: ".serialize($carousel_typography)."*/\n";
+        // echo "/* carousel_caption_background_opacity: ".serialize($carousel_caption_background_opacity)."*/\n";
 
         foreach ($carousel_typography as $selector => $properties) {
             if (! empty($properties)){
@@ -176,6 +176,14 @@ if ( ! function_exists( 'get_acd_theme_options' ) ) {
                     implode('; ', $css_pieces).
                     "} \n";
             }
+        }
+
+        if(of_get_option('highlight_color')){
+            $highlight_color = of_get_option('highlight_color');
+            echo ".woocommerce div.product p.price, .woocommerce div.product span.price { color: $highlight_color; }\n";
+            echo ".woocommerce div.product .stock { color: $highlight_color ; }\n";
+            echo ".woocommerce span.onsale { background-color: $highlight_color ; }\n";
+            echo ".woocommerce ul.products li.product .price { color: $highlight_color ; }\n";
         }
 
         echo '</style>';

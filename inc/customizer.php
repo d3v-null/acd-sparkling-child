@@ -252,6 +252,30 @@ function acd_customizer( $wp_customize ) {
         )
     );
 
+    /**
+     * Colour Options
+     */
+
+     $wp_customize->add_setting(
+         'sparkling[highlight_color]',
+         array(
+             'default'=> '#DA4453',
+             'type'=> 'option',
+         )
+     );
+
+     $wp_customize->add_control(
+         new WP_Customize_Color_Control(
+             $wp_customize,
+             'sparkling[highlight_color]',
+             array(
+                 'label'=> __('Highlight Color'),
+                 'settings'=>'sparkling[highlight_color]',
+                 'section'=>'colors'
+             )
+         )
+     );
+
 
 }
 add_action( 'customize_register', 'acd_customizer' );

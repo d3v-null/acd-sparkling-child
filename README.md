@@ -33,7 +33,8 @@ A child of the Sparkling theme for the ACD website
   - [ ] Fix grey on grey
 - WooCommerce
   - [x] Remove mark.count
-  - [ ] price highlight same as button
-  - [ ] title in black
+  - [x] price highlight same as button
+  - [x] heading colour hover inherit
+  - [ ] heading size bump
 - Typography
   - [ ] &lt;a&gt; underlined

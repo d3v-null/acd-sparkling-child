@@ -59,6 +59,16 @@
 
 .navbar {}
 
+/* =Home
+----------------------------------------------- */
+.homepage article header {
+  display: None;
+}
+
+#primary.homepage .post-inner-content{
+  border-style: none;
+}
+
 /* =Widgets
 ----------------------------------------------- */
 

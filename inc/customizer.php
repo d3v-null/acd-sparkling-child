@@ -113,37 +113,42 @@ function acd_customizer( $wp_customize ) {
         )
     );
 
-    // $wp_customize->add_setting(
-    //     'sparkling[header_nav_position]',
-    //     array(
-    //         'default' => 'center',
-    //         'type'      => 'option',
-    //         'sanitize_callback' => ''
-    //     )
-    // );
-    //
-    // $wp_customize->add_control('sparkling[header_nav_position]', array(
-    //     'section' => 'sparkling_header_options',
-    //     'description' => __('Header nav menu position'),
-    //     'type'    => 'select',
-    //     'choices'    => $typography_options['horizontal-positions']
-    // ));
+    /**
+     * Homepage Options
+     */
+
+    $wp_customize->add_section('sparkling_home_options', array(
+        'title' => __('Homepage', 'sparkling'),
+        'priority' => 31,
+        'panel' => 'sparkling_main_options'
+    ));
+
+    /* homepage signature image */
+
+    $wp_customize->add_setting(
+        'sparkling[signature_img_url]',
+        array(
+            'default' => '',
+            'type'      => 'option',
+            'sanitize_callback' => ''
+        )
+    );
+
+    $wp_customize->add_control(
+        new WP_Customize_Image_Control(
+            $wp_customize,
+            'sparkling[signature_img_url]',
+            array(
+                'label' => __( 'Upload an image for the homepage signature', 'sparkling' ),
+                'settings' => 'sparkling[signature_img_url]',
+                'section' => 'sparkling_home_options'
+            )
+        )
+    );
+
 
 }
 add_action( 'customize_register', 'acd_customizer' );
-
-
-/**
- * Sanitzie checkbox for WordPress customizer
- */
-// function acd_sanitize_pagewidth( $input ) {
-//     $number = (int)$input;
-//     if ( $number >= 240 && $number < 5120 ) {
-//         return $number;
-//     } else {
-//         return '';
-//     }
-// }
 
 function acd_sanitize_horizontal_position( $input ) {
     global $typography_options;

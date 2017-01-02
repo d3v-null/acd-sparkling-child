@@ -173,3 +173,16 @@ add_filter('woocommerce_xero_invoice_to_xml', 'acd_woocommerce_xero_invoice_to_x
  }
 
  add_action('woocommerce_before_cart_contents', 'acd_output_cart_notices');
+
+/**
+ * Overwrite Sparkling main content bootstrap classes
+ */
+
+ function sparkling_main_content_bootstrap_classes() {
+     if ( is_page_template( 'page-fullwidth.php' ) ) {
+         return 'col-sm-12 col-md-12';
+     } else if ( is_page_template( 'page-home.php' ) ) {
+         return 'container';
+     }
+     return 'col-sm-12 col-md-8';
+ }

@@ -39,3 +39,5 @@ A child of the Sparkling theme for the ACD website
   - [x] heading size bump
 - Typography
   - [x] &lt;a&gt; underlined
+- Other
+  - [x] configurable checkout message

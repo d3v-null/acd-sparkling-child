@@ -276,6 +276,48 @@ function acd_customizer( $wp_customize ) {
          )
      );
 
+    /**
+    * Other options
+    */
+
+    $wp_customize->add_setting(
+        'sparkling[checkout_message]',
+        array(
+            'default' => 'Dear customer, <br/>'
+                 .'Please note that this website is a testing website and no orders placed here '
+                 .'will be fulfilled. '
+                 .'we appologize for any inconvenience this may cause you. Thank you.',
+            'type' => 'option'
+        )
+    );
+
+    $wp_customize->add_control(
+        'sparkling[checkout_message]',
+        array(
+            'label' => __('Checkout Message'),
+            'settings' => 'sparkling[checkout_message]',
+            'section' => 'sparkling_other_options',
+            'type' => 'textarea'
+        )
+    );
+
+    $wp_customize->add_setting(
+        'sparkling[enable_checkout_message]',
+        array(
+            'type'=>'option',
+            'default'=>0,
+            'sanitize_callback' => 'sparkling_sanitize_checkbox'
+        )
+    );
+
+    $wp_customize->add_control(
+        'sparkling[enable_checkout_message]',
+        array(
+            'label'=> __('Enable Checkout Message'),
+            'section' => 'sparkling_other_options',
+            'type' => 'checkbox'
+        )
+    );
 
 }
 add_action( 'customize_register', 'acd_customizer' );

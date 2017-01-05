@@ -187,6 +187,29 @@ if ( ! function_exists( 'get_acd_theme_options' ) ) {
         }
 
         echo '</style>';
+
+        /**
+         * Add notice to cart
+         */
+
+        function acd_output_cart_notices() {
+            $enable = of_get_option('enable_checkout_message');
+            if(WP_DEBUG) error_log("acd_output_cart_notices enable_checkout_message "
+                .serialize($enable));
+
+            if( $enable ){
+                if(WP_DEBUG) error_log("acd_output_cart_notices enable_checkout_message true");
+
+                $message = of_get_option('checkout_message');
+                if(WP_DEBUG) error_log("acd_output_cart_notices checkout_message"
+                    .serialize($message));
+                if(!empty($message)){
+                    wc_add_notice( $message );
+                }
+            }
+        }
+
+        add_action('woocommerce_before_cart_contents', 'acd_output_cart_notices');
     }
 
 }

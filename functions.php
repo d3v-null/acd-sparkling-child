@@ -161,20 +161,6 @@ function acd_woocommerce_xero_invoice_to_xml_edit($xml, $_this){
 add_filter('woocommerce_xero_invoice_to_xml', 'acd_woocommerce_xero_invoice_to_xml_edit', 0, 2);
 
 /**
- * Add notice to cart
- */
-
- function acd_output_cart_notices() {
-     wc_add_notice( 'Dear customer, <br/>'
-        .'Please note that this website is a testing website and no orders placed here '
-        .'will be fulfilled. to place an order, please visit our actual site at '
-        .'<a href="www.annachandler.com">www.annachandler.com</a><br/>'
-        .'we appologize for any inconvenience this may cause you. Thank you.');
- }
-
- add_action('woocommerce_before_cart_contents', 'acd_output_cart_notices');
-
-/**
  * Overwrite Sparkling main content bootstrap classes
  */
 

@@ -65,6 +65,11 @@
   font-size: 110%;
 }
 
+#masthead .navbar .icon-title {
+    display: inline-block;
+    margin-left: 20px;
+}
+
 /* =Home
 ----------------------------------------------- */
 .homepage article header {

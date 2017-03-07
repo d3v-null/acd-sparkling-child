@@ -84,6 +84,9 @@ if (isset($_SERVER['HTTP_USER_AGENT']) && (strpos($_SERVER['HTTP_USER_AGENT'], '
 		'navbar-toggle',
 		'btn-square',
 	);
+    $title_d_classes = array(
+        'icon-title'
+    );
 	// $icon_a_classes = array(
 	// 	'btn',
 	// 	'navbar-btn',
@@ -106,27 +109,33 @@ if (isset($_SERVER['HTTP_USER_AGENT']) && (strpos($_SERVER['HTTP_USER_AGENT'], '
 		$header_icons[] = array(
 			'icon'=>'user',
 			'link'=>site_url( "/my-account"),
-			'title'=>'My Account'
+			'title'=>'My Account',
+            'show_title'=>False
 		);
 		$header_icons[] = array(
 			'icon'=>'sign-out',
 			'link'=>wp_logout_url( ),
-			'title'=>'Sign out'
+			'title'=>'Sign out',
+            'show_title'=>True
 		);
 	} else {
 		$header_icons[] = array(
 			'icon'=>'sign-in',
 			'link'=>wp_login_url( ),
-			'title'=>'Sign in'
+			'title'=>__('Log in'),
+            'show_title'=>True
 		);
 		$header_icons[] = array(
 			'icon'=>'user-plus',
 			'link'=>site_url( "/wholesale-access" ),
-			'title'=>'Create Account'
+			'title'=>'Create Account',
+            'show_title'=>False
 		);
 	}
 
-	function get_icons($header_icons, $icon_container='div', $icon_container_classes, $icon_i_classes, $icon_a_classes)
+	function get_icons($header_icons, $icon_container='div',
+        $icon_container_classes, $icon_i_classes, $icon_a_classes,
+        $title_d_classes)
 	{
 		$out = '';
 		if(!empty($header_icons)){
@@ -138,7 +147,8 @@ if (isset($_SERVER['HTTP_USER_AGENT']) && (strpos($_SERVER['HTTP_USER_AGENT'], '
 				$defaults = array(
 					'icon'=>'question',
 					'link'=>'#',
-					'title'=>'title'
+					'title'=>'title',
+                    'show_title'=>False,
 				);
 				$header_icon = array_merge($defaults, $header_icon);
 				// $out .= "<li>";
@@ -153,6 +163,13 @@ if (isset($_SERVER['HTTP_USER_AGENT']) && (strpos($_SERVER['HTTP_USER_AGENT'], '
 				$out .=     	implode(' ', $icon_i_classes);
 				$out .= 		" fa-{$header_icon['icon']}\"";
 				$out .= 		" aria-hidden=\"true\"></i>";
+                if($header_icon['show_title']){
+                    $out .= "<div class=\"";
+                    $out .= implode(' ', $title_d_classes);
+                    $out .= "\">";
+                    $out .= $header_icon['title'];
+                    $out .="</div>";
+                }
 				$out .= "</a>";
 				// $out .= "</li>";
 			}
@@ -206,7 +223,9 @@ if (isset($_SERVER['HTTP_USER_AGENT']) && (strpos($_SERVER['HTTP_USER_AGENT'], '
 						<span class="sr-only">Toggle navigation</span>
 						<i class="<?php echo implode(' ', $icon_i_classes); ?> fa-bars" aria-hidden="true"></i>
 					</a>
-					<?php echo get_icons($header_icons, $icon_container, $icon_container_classes, $icon_i_classes, $icon_a_classes); ?>
+					<?php echo get_icons($header_icons, $icon_container,
+                        $icon_container_classes, $icon_i_classes, $icon_a_classes,
+                        $title_d_classes); ?>
 				</div>
 				<div class="<?php echo implode(' ', $nav_content_classes); ?>">
 					<?php acd_header_menu(); // main navigation ?>

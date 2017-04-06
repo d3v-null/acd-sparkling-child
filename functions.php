@@ -157,7 +157,15 @@ function acd_woocommerce_xero_invoice_to_xml_edit($xml, $_this){
 
     if(WP_DEBUG) error_log("due_date xml ".serialize($reference_xml));
 
+    // Delete old <Reference/> XML:
+
+    $xml = preg_replace("/<Reference>[^<]*<\/Reference>/", "", $xml);
+
     $xml = preg_replace("/<\/DueDate>/", "</DueDate>{$reference_xml}", $xml);
+
+    // Fix tax codes so that they are GST on Income
+
+    $xml = preg_replace("/<TaxType>TAX\d+<\/TaxType>/", "<TaxType>OUTPUT</TaxType>", $xml);
 
     if(WP_DEBUG) error_log("returning xml ".serialize($xml));
 

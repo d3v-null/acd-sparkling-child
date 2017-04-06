@@ -4,6 +4,10 @@
  * Enqueue scripts and styles.
  */
 
+if(!defined('DEBUG_SPARKLING_CHILD')){
+    define('DEBUG_SPARKLING_CHILD', false);
+}
+
 
 function acd_scripts() {
     $parent_style = 'sparkling';
@@ -58,7 +62,9 @@ function add_extra_typography_options(){
     } else {
         $typography_options = array('faces' => $extra_typography_faces);
     }
-    error_log("typography options:".serialize($typography_options));
+    if(DEBUG_SPARKLING_CHILD) {
+        error_log("typography options:".serialize($typography_options));
+    }
 }
 add_action('init', 'add_extra_typography_options', 99);
 

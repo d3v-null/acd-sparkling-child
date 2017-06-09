@@ -63,6 +63,7 @@ if (isset($_SERVER['HTTP_USER_AGENT']) && (strpos($_SERVER['HTTP_USER_AGENT'], '
 		// 'container-fluid',
 		// 'container'
 	);
+
 	$branding_classes = array();
 	$icon_container_classes = array(
 		'navbar',
@@ -210,6 +211,21 @@ if (isset($_SERVER['HTTP_USER_AGENT']) && (strpos($_SERVER['HTTP_USER_AGENT'], '
 		$out .= "</div> <!-- end of #branding -->";
 		return $out;
 	}
+
+    function acd_output_header_message() {
+        $enable = of_get_option('enable_header_message');
+
+        if( $enable ){
+            $message = of_get_option('header_message');
+            if(!empty($message)){
+                $out = $message;
+                $out = "<div class=\"" . implode(" ", array('header-message')) . "\">"
+                    . $out
+                    . "</div>";
+                echo( $out );
+            }
+        }
+    }
 ?>
 
 <a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
@@ -231,6 +247,7 @@ if (isset($_SERVER['HTTP_USER_AGENT']) && (strpos($_SERVER['HTTP_USER_AGENT'], '
 					<?php acd_header_menu(); // main navigation ?>
 				</div>
 			</nav>
+            <?php acd_output_header_message(); ?>
 		</div><!-- .header-content -->
 	</header><!-- #masthead -->
 

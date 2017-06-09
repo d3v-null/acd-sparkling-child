@@ -12,14 +12,17 @@ if ( ! function_exists( 'get_acd_theme_options' ) ) {
             global $typography_options;
             $rules = array();
             if ( !empty($typography ) ) {
-                if(isset($typography_options['faces'][$typography['face']])){
+                if(isset($typography['face']) && isset($typography_options['faces'][$typography['face']])){
                     $rules[] = 'font-family: '. $typography_options['faces'][$typography['face']];
                 }
-                if(isset($typography_options['style'])){
+                if(isset($typography['style'])){
                     $rules[] = 'font-weight: ' . $typography['style'];
                 }
                 if(isset($typography['color'])){
                     $rules[] = 'color: '. $typography['color'];
+                }
+                if(isset($typography['size']) && isset($typography_options['sizes'][$typography['size']])){
+                    $rules[] = 'font-size: ' . $typography_options['sizes'][$typography['size']];
                 }
             }
             $response = implode('; ', $rules);
@@ -95,7 +98,6 @@ if ( ! function_exists( 'get_acd_theme_options' ) ) {
             echo " header#masthead { $header_content_css ;} \n";
         }
 
-        $navbar_css = '';
         $navbar_typography = of_get_option('navbar_typography');
         if(of_get_option('nav_link_color')){
             $navbar_typography['color'] = of_get_option('nav_link_color');
@@ -104,6 +106,13 @@ if ( ! function_exists( 'get_acd_theme_options' ) ) {
         if(!empty($navbar_typo_css)){
             echo ".navbar a { $navbar_typo_css ;} \n";
         }
+
+        $header_msg_typo = of_get_option('header_message_typography');
+        $header_msg_css = get_typography_css_rules($header_msg_typo);
+        if(!empty($header_msg_css)){
+            echo " .header-message { $header_msg_css ;} \n";
+        }
+
 
         // $header_nav_menu_css = '';
         // $header_nav_position = of_get_option('header_nav_position');
@@ -194,15 +203,8 @@ if ( ! function_exists( 'get_acd_theme_options' ) ) {
 
         function acd_output_cart_notices() {
             $enable = of_get_option('enable_checkout_message');
-            if(WP_DEBUG) error_log("acd_output_cart_notices enable_checkout_message "
-                .serialize($enable));
-
             if( $enable ){
-                if(WP_DEBUG) error_log("acd_output_cart_notices enable_checkout_message true");
-
                 $message = of_get_option('checkout_message');
-                if(WP_DEBUG) error_log("acd_output_cart_notices checkout_message"
-                    .serialize($message));
                 if(!empty($message)){
                     wc_add_notice( $message );
                 }

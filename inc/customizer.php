@@ -8,8 +8,10 @@ function acd_customizer( $wp_customize ) {
     /* modifications to sparkling typography options */
 
     $typography_defaults = array(
+            'size'  => '14px',
             'face'  => 'Open Sans',
             'style' => 'normal',
+            'color' => '#000000'
     );
     global $typography_options;
 
@@ -60,6 +62,58 @@ function acd_customizer( $wp_customize ) {
         'type'    => 'select',
         'choices'    => $typography_options['styles']
     ));
+
+    $wp_customize->add_setting('sparkling[header_message_typography][face]', array(
+        'default' => $typography_defaults['face'],
+        'type' => 'option',
+        'sanitize_callback' => 'sparkling_sanitize_typo_face'
+    ));
+    $wp_customize->add_control('sparkling[header_message_typography][face]', array(
+        'section' => 'sparkling_typography_options',
+        'label' => __('Header Message'),
+        'description' => __('Header Message typography'),
+        'type'    => 'select',
+        'choices'    => $typography_options['faces']
+    ));
+    $wp_customize->add_setting('sparkling[header_message_typography][style]', array(
+        'default' => $typography_defaults['style'],
+        'type' => 'option',
+        'sanitize_callback' => 'sparkling_sanitize_typo_style'
+    ));
+    $wp_customize->add_control('sparkling[header_message_typography][style]', array(
+        'section' => 'sparkling_typography_options',
+        'type'    => 'select',
+        'choices'    => $typography_options['styles']
+    ));
+    $wp_customize->add_setting('sparkling[header_message_typography][size]', array(
+        'default' => $typography_defaults['size'],
+        'type' => 'option',
+        'sanitize_callback' => 'sparkling_sanitize_typo_size'
+    ));
+    $wp_customize->add_control('sparkling[header_message_typography][size]', array(
+        'section' => 'sparkling_typography_options',
+        'type'    => 'select',
+        'choices'    => $typography_options['sizes']
+    ));
+    $wp_customize->add_setting(
+        'sparkling[header_message_typography][color]',
+        array(
+            'default'=> $typography_defaults['color'],
+            'type'=> 'option',
+            'sanitize_callback' => 'sparkling_sanitize_hexcolor'
+        )
+    );
+    $wp_customize->add_control(
+        new WP_Customize_Color_Control(
+            $wp_customize,
+            'sparkling[header_message_typography][color]',
+            array(
+                // 'label'=> __('Header Message Typography olour'),
+                'settings'=>'sparkling[header_message_typography][color]',
+                'section'=>'sparkling_typography_options'
+            )
+        )
+    );
 
     /* modifications to sparkling layout options */
 
@@ -314,6 +368,42 @@ function acd_customizer( $wp_customize ) {
         'sparkling[enable_checkout_message]',
         array(
             'label'=> __('Enable Checkout Message'),
+            'section' => 'sparkling_other_options',
+            'type' => 'checkbox'
+        )
+    );
+
+    $wp_customize->add_setting(
+        'sparkling[header_message]',
+        array(
+            'default' => '',
+            'type' => 'option'
+        )
+    );
+
+    $wp_customize->add_control(
+        'sparkling[header_message]',
+        array(
+            'label' => __('Header Message'),
+            'settings' => 'sparkling[header_message]',
+            'section' => 'sparkling_other_options',
+            'type' => 'textarea'
+        )
+    );
+
+    $wp_customize->add_setting(
+        'sparkling[enable_header_message]',
+        array(
+            'type'=>'option',
+            'default'=>0,
+            'sanitize_callback' => 'sparkling_sanitize_checkbox'
+        )
+    );
+
+    $wp_customize->add_control(
+        'sparkling[enable_header_message]',
+        array(
+            'label'=> __('Enable Header Message'),
             'section' => 'sparkling_other_options',
             'type' => 'checkbox'
         )

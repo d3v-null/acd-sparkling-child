@@ -110,7 +110,7 @@ if ( ! function_exists( 'get_acd_theme_options' ) ) {
         $header_msg_typo = of_get_option('header_message_typography');
         $header_msg_css = get_typography_css_rules($header_msg_typo);
         if(!empty($header_msg_css)){
-            echo " .header-message { $header_msg_css ;} \n";
+            echo " .header-message-inner { $header_msg_css ;} \n";
         }
 
 
@@ -196,30 +196,17 @@ if ( ! function_exists( 'get_acd_theme_options' ) ) {
         }
 
         echo '</style>';
-
-        /**
-         * Add notice to cart
-         */
-
-        function acd_output_cart_notices() {
-            $enable = of_get_option('enable_checkout_message');
-            if( $enable ){
-                $message = of_get_option('checkout_message');
-                if(!empty($message)){
-                    wc_add_notice( $message );
-                }
-            }
-        }
-
-        add_action('woocommerce_before_cart_contents', 'acd_output_cart_notices');
     }
 
 }
 
-if ( ! function_exists( 'acd_header_menu' ) ) :
+add_action( 'wp_head', 'get_acd_theme_options', 10 );
+
+
 /**
  * Header menu (should you choose to use one)
  */
+if ( ! function_exists( 'acd_header_menu' ) ) :
 function acd_header_menu() {
   // display the WordPress Custom Menu if available
   wp_nav_menu(array(
@@ -236,6 +223,59 @@ function acd_header_menu() {
 endif;
 
 
-add_action( 'wp_head', 'get_acd_theme_options', 10 );
+
+/**
+ * Add notice to cart
+ */
+global $acd_printed_cart_notice;
+$acd_printed_cart_notice = false;
+
+if ( ! function_exists( 'acd_add_cart_notice' ) ) :
+function acd_add_cart_notice() {
+    // acd_fix_first_cart_notice();
+    global $acd_printed_cart_notice;
+    if($acd_printed_cart_notice){
+        return;
+    }
+    $enable = of_get_option('enable_checkout_message');
+    if(WP_DEBUG) error_log("acd_add_cart_notice called, enable: ".serialize($enable));
+    if( $enable ){
+        $message = of_get_option('checkout_message');
+        if(WP_DEBUG) error_log(sprintf("acd_add_cart_notice called, message: %s, wc_has_notice: %s", serialize($message), serialize(wc_has_notice($message))));
+        if(!empty($message) && !wc_has_notice($message)){
+            if(WP_DEBUG) error_log("acd_add_cart_notice called, adding message");
+            wc_add_notice( $message );
+        }
+    }
+    wc_print_notices();
+    $acd_printed_cart_notice = true;
+}
+endif;
+
+/**
+ * Fixes so notices actually display.
+ * is_cart, is_checkout, is_shop only function after posts_selection hook which happens after headers sent
+ */
+
+if ( ! function_exists( 'acd_fix_first_cart_notice' ) ) :
+function acd_fix_first_cart_notice() {
+    /** fixes this issue where cookie is not generated until cart is created:
+        https://github.com/woocommerce/woocommerce/issues/4920
+     */
+    if(WP_DEBUG) error_log(sprintf( "acd_fix_first_cart_notice called."));
+    global $woocommerce;
+    if(WP_DEBUG) error_log(sprintf(
+        "acd_fix_first_cart_notice. has_session: %s. session: %s",
+        var_export($woocommerce->session->has_session(), true),
+        var_export($woocommerce->session, true)
+    ));
+    if(!isset($woocommerce->session) || !$woocommerce->session->has_session()){
+        do_action( 'woocommerce_set_cart_cookies',  true );
+    }
+}
+endif;
+add_action('woocommerce_add_to_cart', 'acd_fix_first_cart_notice');
+// add_action('woocommerce_before_mini_cart', 'acd_add_cart_notice');
+add_action('woocommerce_before_cart', 'acd_add_cart_notice');
 
 ?>

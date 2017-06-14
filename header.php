@@ -222,7 +222,7 @@ if (isset($_SERVER['HTTP_USER_AGENT']) && (strpos($_SERVER['HTTP_USER_AGENT'], '
                 $out = "<div class=\"" . implode(" ", array('header-message-inner')) . "\">"
                     . $out
                     . "</div>";
-                $out = "<div class=\"" . implode(" ", array('header-message')) . "\">"
+                $out = "<div class=\"" . implode(" ", array('header-message-container')) . "\">"
                     . $out
                     . "</div>";
                 echo( $out );

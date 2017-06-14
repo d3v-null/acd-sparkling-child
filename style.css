@@ -70,6 +70,19 @@
     margin-left: 20px;
 }
 
+/* Header message */
+
+.header-message-container {
+    width: 100%;
+    display: block;
+}
+
+.header-message-container .header-message-inner {
+    text-transform: uppercase;
+    float: right;
+    margin-right: 20px;
+}
+
 /* =Home
 ----------------------------------------------- */
 .homepage article header {

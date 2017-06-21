@@ -20,7 +20,7 @@ function acd_scripts() {
     );
 
     $google_font_query_args = array(
-        'family' => 'Yanone+Kaffeesatz:400,700:latin|IM+Fell+DW+Pica:400|IM+Fell+DW+Pica+SC:400',
+        'family' => urlencode('Yanone Kaffeesatz:400,700:latin|IM Fell DW Pica:400|IM Fell DW Pica SC:400'),
     );
     wp_register_style( 'acd-google-fonts', add_query_arg( $google_font_query_args, "//fonts.googleapis.com/css" ), array(), null );
     wp_enqueue_style('acd-google-fonts');

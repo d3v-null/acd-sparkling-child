@@ -233,7 +233,7 @@ if (isset($_SERVER['HTTP_USER_AGENT']) && (strpos($_SERVER['HTTP_USER_AGENT'], '
 
 <a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
 <div id="page" class="hfeed site">
-	<header id="masthead" class="<?php echo implode(' ', $header_classes); ?>" role="banner">
+	<header id="masthead" class="<?php echo implode(' ', $header_classes); ?>">
 		<div class="<?php echo implode(' ', $header_content_classes); ?>">
 			<?php echo get_branding($branding_classes); ?>
 			<nav class="<?php echo implode(' ', $nav_classes); ?>" role="navigation">

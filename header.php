@@ -236,7 +236,7 @@ if (isset($_SERVER['HTTP_USER_AGENT']) && (strpos($_SERVER['HTTP_USER_AGENT'], '
 	<header id="masthead" class="<?php echo implode(' ', $header_classes); ?>">
 		<div class="<?php echo implode(' ', $header_content_classes); ?>">
 			<?php echo get_branding($branding_classes); ?>
-			<nav class="<?php echo implode(' ', $nav_classes); ?>" role="navigation">
+			<nav class="<?php echo implode(' ', $nav_classes); ?>">
 				<div class="<?php echo implode(' ', $nav_header_classes); ?>">
 					<a type="button" class="<?php echo implode(' ', $icon_a_classes); ?>" data-toggle="collapse" data-target=".navbar-ex1-collapse">
 						<span class="sr-only">Toggle navigation</span>

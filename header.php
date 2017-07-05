@@ -25,22 +25,17 @@ if (isset($_SERVER['HTTP_USER_AGENT']) && (strpos($_SERVER['HTTP_USER_AGENT'], '
 <meta name="theme-color" content="<?php echo of_get_option( 'nav_bg_color' ); ?>">
 <link rel="profile" href="http://gmpg.org/xfn/11">
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
-<link rel="apple-touch-icon" sizes="57x57" href="<?php echo get_stylesheet_directory_uri(); ?>/favicons/apple-icon-57x57.png">
-<link rel="apple-touch-icon" sizes="60x60" href="<?php echo get_stylesheet_directory_uri(); ?>/favicons/apple-icon-60x60.png">
-<link rel="apple-touch-icon" sizes="72x72" href="<?php echo get_stylesheet_directory_uri(); ?>/favicons/apple-icon-72x72.png">
-<link rel="apple-touch-icon" sizes="76x76" href="<?php echo get_stylesheet_directory_uri(); ?>/favicons/apple-icon-76x76.png">
-<link rel="apple-touch-icon" sizes="114x114" href="<?php echo get_stylesheet_directory_uri(); ?>/favicons/apple-icon-114x114.png">
-<link rel="apple-touch-icon" sizes="120x120" href="<?php echo get_stylesheet_directory_uri(); ?>/favicons/apple-icon-120x120.png">
-<link rel="apple-touch-icon" sizes="144x144" href="<?php echo get_stylesheet_directory_uri(); ?>/favicons/apple-icon-144x144.png">
-<link rel="apple-touch-icon" sizes="152x152" href="<?php echo get_stylesheet_directory_uri(); ?>/favicons/apple-icon-152x152.png">
-<link rel="apple-touch-icon" sizes="180x180" href="<?php echo get_stylesheet_directory_uri(); ?>/favicons/apple-icon-180x180.png">
-<link rel="icon" type="image/png" sizes="192x192"  href="<?php echo get_stylesheet_directory_uri(); ?>/favicons/android-icon-192x192.png">
-<link rel="icon" type="image/png" sizes="32x32" href="<?php echo get_stylesheet_directory_uri(); ?>/favicons/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="96x96" href="<?php echo get_stylesheet_directory_uri(); ?>/favicons/favicon-96x96.png">
-<link rel="icon" type="image/png" sizes="16x16" href="<?php echo get_stylesheet_directory_uri(); ?>/favicons/favicon-16x16.png">
-<link rel="manifest" href="<?php echo get_stylesheet_directory_uri(); ?>/favicons/manifest.json">
-<meta name="msapplication-TileColor" content="#ffffff">
-<meta name="msapplication-TileImage" content="<?php echo get_stylesheet_directory_uri(); ?>/favicons/ms-icon-144x144.png">
+
+<!--Favicon stuff-->
+<link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png?v=xQo4dYqvbG">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png?v=xQo4dYqvbG">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png?v=xQo4dYqvbG">
+<link rel="manifest" href="/favicons/manifest.json?v=xQo4dYqvbG">
+<link rel="mask-icon" href="/favicons/safari-pinned-tab.svg?v=xQo4dYqvbG" color="#ff02f5">
+<link rel="shortcut icon" href="/favicons/favicon.ico?v=xQo4dYqvbG">
+<meta name="apple-mobile-web-app-title" content="Anna Chandler Design">
+<meta name="application-name" content="Anna Chandler Design">
+<meta name="msapplication-config" content="/favicons/browserconfig.xml?v=xQo4dYqvbG">
 <meta name="theme-color" content="#ffffff">
 
 <?php wp_head(); ?>

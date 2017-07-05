@@ -27,16 +27,16 @@ if (isset($_SERVER['HTTP_USER_AGENT']) && (strpos($_SERVER['HTTP_USER_AGENT'], '
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
 
 <!--Favicon stuff-->
-<link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png?v=xQo4dYqvbG">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png?v=xQo4dYqvbG">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png?v=xQo4dYqvbG">
-<link rel="manifest" href="/favicons/manifest.json?v=xQo4dYqvbG">
-<link rel="mask-icon" href="/favicons/safari-pinned-tab.svg?v=xQo4dYqvbG" color="#ff02f5">
-<link rel="shortcut icon" href="/favicons/favicon.ico?v=xQo4dYqvbG">
+<link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png?v=E6bx5xR5oe">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png?v=E6bx5xR5oe">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png?v=E6bx5xR5oe">
+<link rel="manifest" href="/favicons/manifest.json?v=E6bx5xR5oe">
+<link rel="mask-icon" href="/favicons/safari-pinned-tab.svg?v=E6bx5xR5oe" color="#ff1493">
+<link rel="shortcut icon" href="/favicons/favicon.ico?v=E6bx5xR5oe">
 <meta name="apple-mobile-web-app-title" content="Anna Chandler Design">
 <meta name="application-name" content="Anna Chandler Design">
-<meta name="msapplication-config" content="/favicons/browserconfig.xml?v=xQo4dYqvbG">
-<meta name="theme-color" content="#ffffff">
+<meta name="msapplication-config" content="/favicons/browserconfig.xml?v=E6bx5xR5oe">
+<meta name="theme-color" content="#ff1493">
 
 <?php wp_head(); ?>
 

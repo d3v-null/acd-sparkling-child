@@ -62,12 +62,33 @@
 /* bump up navbar font size */
 
 #masthead .navbar li a {
-  font-size: 110%;
+    font-size: 110%;
+}
+
+/* Fix spacing and display of carets */
+
+#masthead .navbar li {
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+#masthead .navbar li a {
+    display: inline-block;
+}
+
+#masthead .navbar li .caret {
+    display: inline-block;
 }
 
 #masthead .navbar .icon-title {
     display: inline-block;
     margin-left: 20px;
+}
+
+#masthead nav {
+    margin-bottom: 0px;
 }
 
 /* Header message */
@@ -82,7 +103,6 @@
     float: right;
     margin-right: 20px;
 }
-
 /* =Content
 ----------------------------------------------- */
 

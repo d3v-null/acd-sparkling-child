@@ -87,7 +87,7 @@
 ----------------------------------------------- */
 
 .main-content-area {
-  margin-top: 20px; 
+  margin-top: 20px;
 }
 
 /* =Home
@@ -177,4 +177,36 @@ a.arconix-button.arconix-button-medium.arconix-button-gray {
   background-image: None;
   border-radius: 3px;
   box-shadow: none;
+}
+
+/* Design ranges */
+
+@media (min-width: 768px) {
+    td.design-range-image {
+        width: 30%;
+    }
+
+    td.design-range-image img {
+        width: 100%;
+    }
+}
+
+@media (max-width: 767px) {
+    td.design-range-image {
+        display: block;
+    }
+
+    td.design-range-image img {
+        max-width: 200px;
+    }
+
+    td.design-range-description {
+        display: block;
+        clear: both;
+    }
+
+    table>tbody>tr>td.design-range-description,
+    table>tbody>tr>td.design-range-image {
+        border-top-style: none;
+    }
 }

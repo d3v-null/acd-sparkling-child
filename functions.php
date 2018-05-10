@@ -10,10 +10,14 @@ if(!defined('DEBUG_SPARKLING_CHILD')){
 
 
 function acd_scripts() {
-    $parent_style = 'sparkling';
+    $parent_style = 'sparkling-style';
 
-    wp_enqueue_style( $parent_style, get_template_directory_uri() . '/style.css' );
-    wp_enqueue_style( 'acd-sparkling-child-style',
+    wp_enqueue_style(
+        $parent_style,
+        get_template_directory_uri() . '/style.css'
+    );
+    wp_enqueue_style(
+        'acd-sparkling-child-style',
         get_stylesheet_directory_uri() . '/style.css',
         array( $parent_style ),
         wp_get_theme()->get('Version')

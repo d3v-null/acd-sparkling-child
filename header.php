@@ -126,7 +126,7 @@ if (isset($_SERVER['HTTP_USER_AGENT']) && (strpos($_SERVER['HTTP_USER_AGENT'], '
             'show_title'=>False
 		);
 		$header_icons[] = array(
-			'icon'=>'sign-out',
+			'icon'=>'sign-out-alt',
 			'link'=>wp_logout_url( ),
 			'title'=>'Sign out',
             'show_title'=>True

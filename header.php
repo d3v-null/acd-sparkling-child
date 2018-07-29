@@ -133,7 +133,7 @@ if (isset($_SERVER['HTTP_USER_AGENT']) && (strpos($_SERVER['HTTP_USER_AGENT'], '
 		);
 	} else {
 		$header_icons[] = array(
-			'icon'=>'sign-in',
+			'icon'=>'sign-in-alt',
 			'link'=>wp_login_url( ),
 			'title'=>__('Log in'),
             'show_title'=>True

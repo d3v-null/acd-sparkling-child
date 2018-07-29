@@ -224,9 +224,18 @@ li.product h3 {
 
 /* =Other
 ----------------------------------------------- */
+
+/* Buttons */
 .btn-default {
   color:white;
   background-color: black;
+}
+
+/* Exceptions: buttons with light background */
+.jetpack_subscription_widget .btn-default,
+.btn-default#searchsubmit
+{
+    color: black;
 }
 
 /* =Override Arconix default button

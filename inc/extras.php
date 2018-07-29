@@ -282,7 +282,7 @@ add_action('woocommerce_before_cart', 'acd_add_cart_notice');
  * function to show the footer info, copyright information
  */
 function sparkling_child_footer_info() {
-	printf( esc_html__( 'child theme by %1$s Powered by %2$s', 'sparkling' ), '<a href="http://dev.laserphile.com" target="_blank">Laserphile</a>', '<a href="http://wordpress.org/" target="_blank">WordPress</a> and <a href="http://colorlib.com/" target="_blank">Colorlib</a>' );
+	printf( esc_html__( ' - Theme by %1$s, Powered by %2$s', 'sparkling' ), '<a href="http://dev.laserphile.com" target="_blank">Laserphile</a>', '<a href="http://wordpress.org/" target="_blank">WordPress</a> and <a href="http://colorlib.com/" target="_blank">Colorlib</a>' );
 }
 
 ?>

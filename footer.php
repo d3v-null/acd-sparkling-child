@@ -26,7 +26,8 @@
 						<?php sparkling_footer_links(); ?>
 					</nav>
 					<div class="copyright col-md-6">
-						<?php echo of_get_option( 'custom_footer_text', 'sparkling' ); ?>
+						<?php echo of_get_option( 'custom_footer_text', 'ACD Sparkling Child' ); ?>
+						<?php /* echo of_get_option( 'custom_footer_text', 'sparkling' ); */ ?>
 						<?php sparkling_child_footer_info(); ?>
 					</div>
 				</div>

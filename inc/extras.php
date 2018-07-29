@@ -260,7 +260,7 @@ endif;
 if ( ! function_exists( 'acd_fix_first_cart_notice' ) ) :
 function acd_fix_first_cart_notice() {
     /** fixes this issue where cookie is not generated until cart is created:
-        https://github.com/woocommerce/woocommerce/issues/4920
+     *  https://github.com/woocommerce/woocommerce/issues/4920
      */
     if(WP_DEBUG) error_log(sprintf( "acd_fix_first_cart_notice called."));
     global $woocommerce;
@@ -277,5 +277,12 @@ endif;
 add_action('woocommerce_add_to_cart', 'acd_fix_first_cart_notice');
 // add_action('woocommerce_before_mini_cart', 'acd_add_cart_notice');
 add_action('woocommerce_before_cart', 'acd_add_cart_notice');
+
+/**
+ * function to show the footer info, copyright information
+ */
+function sparkling_child_footer_info() {
+	printf( esc_html__( 'child theme by %1$s Powered by %2$s', 'sparkling' ), '<a href="http://dev.laserphile.com" target="_blank">Laserphile</a>', '<a href="http://wordpress.org/" target="_blank">WordPress</a> and <a href="http://colorlib.com/" target="_blank">Colorlib</a>' );
+}
 
 ?>

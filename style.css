@@ -225,7 +225,9 @@ li.product h3 {
 /* =Other
 ----------------------------------------------- */
 
-/* Buttons */
+/* =Buttons
+----------------------------------------------- */
+
 .btn-default {
   color:white;
   background-color: black;
@@ -251,7 +253,8 @@ a.arconix-button.arconix-button-medium.arconix-button-gray {
   box-shadow: none;
 }
 
-/* Design ranges */
+/* =Design ranges
+----------------------------------------------- */
 
 @media (min-width: 768px) {
     td.design-range-image {

@@ -77,7 +77,7 @@ if ( ! function_exists( 'get_acd_theme_options' ) ) {
         $heading_typo_css = get_typography_css_rules($heading_typography);
         // echo "/* heading typo css: ".serialize($heading_typo_css)." */\n";
         if(!empty($heading_typo_css)){
-            echo " h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .entry-title { $heading_typo_css ;} \n";
+            echo " h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, .entry-title, .product-categories { $heading_typo_css ;} \n";
         }
 
 

@@ -233,6 +233,10 @@ li.product h3 {
   background-color: black;
 }
 
+.gform_button.btn-default {
+  color:black;
+}
+
 /* Exceptions: buttons with light background */
 .jetpack_subscription_widget .btn-default,
 .btn-default#searchsubmit

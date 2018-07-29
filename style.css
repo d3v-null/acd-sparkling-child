@@ -286,7 +286,7 @@ a.arconix-button.arconix-button-medium.arconix-button-gray {
     }
 }
 
-/* Make post titles appear within featured image if the image exists */
+/* Make post titles appear within featured image if the image exists and is not emtpy */
 img.single-featured.wp-post-image:not([height="1"]) +
 div.post-inner-content {
   padding-top: 0px;

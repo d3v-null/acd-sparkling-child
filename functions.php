@@ -238,3 +238,11 @@ add_filter('woocommerce_xero_invoice_to_xml', 'acd_woocommerce_xero_invoice_to_x
 //     },
 //     9999
 // );
+
+/**
+ * Disable Jetpack Devicepx Script
+ */
+function disable_devicepx() {
+    wp_dequeue_script( 'devicepx' );
+}
+add_action( 'wp_enqueue_scripts', 'disable_devicepx' );

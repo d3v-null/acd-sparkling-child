@@ -192,53 +192,6 @@ add_filter('woocommerce_xero_invoice_to_xml', 'acd_woocommerce_xero_invoice_to_x
  }
 
 
- /**
-  * Dump hooks for debugging execution order
-  */
-//
-// global $filters_seen, $filter_stack;
-// $filters_seen = array();
-// $filter_stack = array();
-//
-// add_action(
-//     'all',
-//     function(){
-//         global $filters_seen, $filter_stack;
-//         if(empty($filters_seen) && empty($filter_stack)){
-//             error_log("\n\n\n\nFirst filter:");
-//         }
-//         $filter = var_export(current_filter(), true);
-//         if(!in_array($filter, $filter_stack) && !in_array($filter, $filters_seen)){
-//             $filter_stack[] = $filter;
-//             $prefix = implode(" > ", $filter_stack);
-//             try {
-//                 if( did_action('posts_selection')){
-//                     $is_checkout = json_encode(is_checkout());
-//                 } else {
-//                     $is_checkout = "<no post>";
-//                 }
-//             } catch (Exception $e) {
-//                 $is_checkout = "<exception>";
-//             }
-//             error_log($prefix . " is_checkout() = $is_checkout") ;
-//         }
-//     },
-//     -1
-// );
-//
-// add_action(
-//     'all',
-//     function(){
-//         global $filters_seen, $filter_stack;
-//         $filter = var_export(current_filter(), true);
-//         if($filter == end($filter_stack)){
-//             array_pop($filter_stack);
-//         }
-//         $filters_seen[] = $filter;
-//     },
-//     9999
-// );
-
 /**
  * Disable Jetpack Devicepx Script
  */

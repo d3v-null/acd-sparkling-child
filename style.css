@@ -308,3 +308,11 @@ div.post-inner-content header.page-header h1 {
   padding: 10px ;
   background-color: rgba(0,0,0,0.5);
 }
+
+
+/* =Fix Terms & Conditions display
+----------------------------------------------- */
+
+.checkbox input[type=checkbox].input-checkbox {
+    position: inherit;
+}

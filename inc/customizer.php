@@ -409,6 +409,36 @@ function acd_customizer( $wp_customize ) {
         )
     );
 
+    /**
+     * Shop Options
+     */
+
+    $wp_customize->add_section('sparkling_shop_options', array(
+        'title' => __('Shop', 'sparkling'),
+        'priority' => 31,
+        'panel' => 'sparkling_main_options'
+    ));
+
+    $wp_customize->add_setting(
+        'sparkling[hide_afterpay_roles]',
+        array(
+            'default' => '',
+            'type' => 'option'
+        )
+    );
+
+    $wp_customize->add_control(
+        'sparkling[hide_afterpay_roles]',
+        array(
+            'label'=> __('Hide AfterPay From Roles'),
+            'section' => 'sparkling_shop_options',
+            'settings' => 'sparkling[hide_afterpay_roles]',
+            'type' => 'textarea'
+        )
+    );
+
+
+
 }
 add_action( 'customize_register', 'acd_customizer' );
 

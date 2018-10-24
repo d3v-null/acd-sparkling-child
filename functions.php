@@ -246,3 +246,27 @@ function disable_devicepx() {
     wp_dequeue_script( 'devicepx' );
 }
 add_action( 'wp_enqueue_scripts', 'disable_devicepx' );
+
+/**
+ * conditionally hide afterpay messages for customers matching a list of roles
+ */
+function sparkling_conditional_hide_afterpay($html) {
+    if( is_user_logged_in() ) {
+        $user = wp_get_current_user();
+        $roles = ( array ) $user->roles;
+        $hidden_roles = of_get_option('hide_afterpay_roles', '');
+        $hidden_roles = explode('|', $hidden_roles);
+        if ($roles && array_intersect($hidden_roles, $roles)) {
+            return "";
+        }
+    }
+    return $html;
+}
+
+foreach (array(
+    "afterpay_html_on_product_thumbnails",
+    "afterpay_html_on_individual_product_pages",
+    "afterpay_html_on_cart_page"
+) as $output_filter) {
+    add_filter($output_filter, 'sparkling_conditional_hide_afterpay', 10);
+}

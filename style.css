@@ -163,6 +163,10 @@
   border-style: none;
 }
 
+.post-inner-content.content-homepage {
+    padding-top: 0px;
+}
+
 /* =Widgets
 ----------------------------------------------- */
 

@@ -31,6 +31,10 @@ function acd_scripts() {
 
     wp_enqueue_script( 'acd-sparkling-child-tether', get_stylesheet_directory_uri(). '/inc/js/tether.min.js', array('jquery') );
     wp_enqueue_script( 'acd-sparkling-child-functions', get_stylesheet_directory_uri(). '/inc/js/functions.min.js', array('jquery', 'sparkling-bootstrapjs') );
+
+    wp_enqueue_script( 'acd-pingdom-rum', '//rum-static.pingdom.net/pa-5c35540f9a3f8300160002f8.js', array(), null);
+
+
 }
 add_action( 'wp_enqueue_scripts', 'acd_scripts' );
 
